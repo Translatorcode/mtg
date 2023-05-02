@@ -3,7 +3,7 @@ import React from 'react';
 const Navbar = () => {
   return (
     <>
-      <nav className='navbar navbar-expand-lg bg-body-tertiary col-primary-custom'>
+      <nav className='navbar navbar-expand-lg bg-body-tertiary col-primary-custom '>
         <div className='container-fluid '>
           <a className='navbar-brand text-white' href='#'>
             MortgageLytics

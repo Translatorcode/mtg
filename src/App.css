@@ -6,10 +6,15 @@
   --text-two: #2e2e2e;
   --text-three: #474747;
   --text-four: #585b96;
+  --text-five: #7d7a7a;
 }
 
 .col-primary-custom {
   background-color: var(--primary-color);
+}
+
+.text-primary-custom {
+  color: var(--primary-color);
 }
 
 .col-bg-light-blue {
@@ -22,6 +27,13 @@
 
 .text-custom-one {
   color: var(--text-one);
+}
+
+.text-custom-four {
+  color: var(--text-four);
+}
+.text-custom-five {
+  color: var(--text-five);
 }
 
 .text-custom-two {
