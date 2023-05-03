@@ -16,8 +16,20 @@ const MortgagePayCalc = () => {
   const dispatch = useDispatch();
 
   const mortgage = useSelector((state) => state.mortgageCalc);
-  const { askingPrice, downPaymentAmount, downPaymentPrecent, mortgageRate, amortizationPeriod, paymentFrequency } =
+  const { askingPrice, downPaymentAmount, downPaymentPercent, mortgageRate, amortizationPeriod, paymentFrequency } =
     mortgage;
+
+  const handleAskingPriceChange = (e) => {
+    const newAskingPrice = Number(e.target.value);
+    dispatch(updateAskingPrice(newAskingPrice));
+
+    if (!isNaN(downPaymentAmount) && !isNaN(downPaymentPercent)) {
+      dispatch(updateDownPaymentPercent(downPaymentPercent));
+      // dispatch(updateDownPaymentAmount(downPaymentAmount));
+    } else {
+      return null;
+    }
+  };
 
   const [userData, setUserData] = useState({
     labels: UserData.map((data) => data.year),
@@ -29,10 +41,6 @@ const MortgagePayCalc = () => {
       },
     ],
   });
-
-  const handleAskingPriceChange = (event) => {
-    dispatch(updateAskingPrice(Number(event.target.value)));
-  };
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
@@ -52,9 +60,9 @@ const MortgagePayCalc = () => {
                   $
                 </span>
                 <input
-                  type='text'
+                  type='number'
                   className='form-control'
-                  placeholder=''
+                  placeholder='Enter Amount'
                   aria-label='Asking Price'
                   aria-describedby='basic-addon1'
                   id='askingPrice'
@@ -76,8 +84,17 @@ const MortgagePayCalc = () => {
                 className='form-control'
                 placeholder='Enter amount'
                 aria-label='down payment number'
+                value={downPaymentAmount}
+                onChange={(e) => dispatch(updateDownPaymentAmount(Number(e.target.value)))}
               />
-              <input type='number' className='form-control' placeholder=' ' aria-label='down payment percentage' />
+              <input
+                type='number'
+                className='form-control'
+                placeholder=' '
+                aria-label='down payment percentage'
+                value={downPaymentPercent}
+                onChange={(e) => dispatch(updateDownPaymentPercent(Number(e.target.value)))}
+              />
               <span className='input-group-text'>%</span>
             </div>
 
@@ -85,16 +102,29 @@ const MortgagePayCalc = () => {
               <div className='col-md-6'>
                 <p className='text-custom-four fw-semibold'>Mortgage rate</p>
                 <div className='input-group mb-3'>
-                  <input type='number' className='form-control' placeholder='Enter amount' aria-label='Mortgage rate' />
+                  <input
+                    type='number'
+                    className='form-control'
+                    placeholder='Enter amount'
+                    aria-label='Mortgage rate'
+                    value={mortgageRate}
+                    onChange={(e) => dispatch(updateMortgageRate(Number(e.target.value)))}
+                  />
                   <span className='input-group-text'>%</span>
                 </div>
               </div>
               <div className='col-md-6'>
                 <p className='text-custom-four fw-semibold'>Amortization period</p>
                 <div className='input-group mb-3'>
-                  <select class='form-select' id='inputGroupSelect01'>
-                    <option selected>Choose...</option>
-                    <option value='1'>1 year</option>
+                  <select
+                    className='form-select'
+                    id='inputGroupSelect01'
+                    value={amortizationPeriod}
+                    onChange={(e) => dispatch(updateAmortizationPeriod(Number(e.target.value)))}
+                  >
+                    <option value='1' defaultValue>
+                      1 year
+                    </option>
                     <option value='2'>2 years</option>
                     <option value='3'>3 years</option>
                     <option value='4'>4 years</option>
@@ -130,11 +160,17 @@ const MortgagePayCalc = () => {
             <div className='row'>
               <div className='col-md-8'>
                 <div className='input-group mb-3 select-container'>
-                  <select class='form-select' id='inputGroupSelect01'>
-                    <option selected>Choose...</option>
-                    <option value='1'>Monthly</option>
+                  <select
+                    className='form-select'
+                    id='inputGroupSelect01'
+                    value={paymentFrequency}
+                    onChange={(e) => dispatch(updatePaymentFrequency(Number(e.target.value)))}
+                  >
+                    <option value='1' defaultValue>
+                      Monthly
+                    </option>
                     <option value='2'>Bi-Weekly</option>
-                    <option value='3'>Weekly</option>
+                    <option value='4'>Weekly</option>
                   </select>
                 </div>
               </div>
