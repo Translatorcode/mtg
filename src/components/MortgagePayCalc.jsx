@@ -1,8 +1,24 @@
 import { UserData } from '../Data';
 import { useState } from 'react';
 import PieChart from './PieChart';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  updateAskingPrice,
+  updateDownPaymentAmount,
+  updateDownPaymentPercent,
+  updateMortgageRate,
+  updateAmortizationPeriod,
+  updatePaymentFrequency,
+} from '../redux/slices/mortgageCalc';
 
 const MortgagePayCalc = () => {
+  const dispatch = useDispatch();
+
+  const mortgage = useSelector((state) => state.mortgageCalc);
+  const { askingPrice, downPaymentAmount, downPaymentPrecent, mortgageRate, amortizationPeriod, paymentFrequency } =
+    mortgage;
+
   const [userData, setUserData] = useState({
     labels: UserData.map((data) => data.year),
     datasets: [
@@ -13,6 +29,10 @@ const MortgagePayCalc = () => {
       },
     ],
   });
+
+  const handleAskingPriceChange = (event) => {
+    dispatch(updateAskingPrice(Number(event.target.value)));
+  };
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
@@ -34,9 +54,12 @@ const MortgagePayCalc = () => {
                 <input
                   type='text'
                   className='form-control'
-                  placeholder='Username'
-                  aria-label='Username'
+                  placeholder=''
+                  aria-label='Asking Price'
                   aria-describedby='basic-addon1'
+                  id='askingPrice'
+                  value={askingPrice}
+                  onChange={handleAskingPriceChange}
                 />
               </div>
             </div>
@@ -55,19 +78,14 @@ const MortgagePayCalc = () => {
                 aria-label='down payment number'
               />
               <input type='number' className='form-control' placeholder=' ' aria-label='down payment percentage' />
-              <span class='input-group-text'>%</span>
+              <span className='input-group-text'>%</span>
             </div>
 
             <div className='row'>
               <div className='col-md-6'>
                 <p className='text-custom-four fw-semibold'>Mortgage rate</p>
                 <div className='input-group mb-3'>
-                  <input
-                    type='number'
-                    className='form-control'
-                    placeholder='Enter amount'
-                    aria-label='down payment number'
-                  />
+                  <input type='number' className='form-control' placeholder='Enter amount' aria-label='Mortgage rate' />
                   <span className='input-group-text'>%</span>
                 </div>
               </div>
@@ -135,7 +153,7 @@ const MortgagePayCalc = () => {
           </div>
           <div className='col-md-2'>
             <div className='container  rounded pt-4 pb-4 text-center fw-semibold col-bg-light-blue h-100 d-flex align-items-center  justify-content-between flex-column'>
-              <div className='col'>
+              <div className='col '>
                 <p className=' mb-0 text-custom-five'>Mortgage Amount</p>
                 <hr className='mt-1 mb-1 ' />
                 <p>$376,900</p>
@@ -144,11 +162,6 @@ const MortgagePayCalc = () => {
                 <p className='mb-0 text-custom-five'>Total Interest</p>
                 <hr className='mt-1 mb-1' />
                 <p>$106,900</p>
-              </div>
-              <div className='col'>
-                <p className='mb-0 text-custom-five'>Estimate Payoff Date</p>
-                <hr className='mt-1 mb-1' />
-                <p className='mb-0'>April 2053</p>
               </div>
             </div>
           </div>
