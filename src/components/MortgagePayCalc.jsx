@@ -22,12 +22,9 @@ const MortgagePayCalc = () => {
   const handleAskingPriceChange = (e) => {
     const newAskingPrice = Number(e.target.value);
     dispatch(updateAskingPrice(newAskingPrice));
-
     if (!isNaN(downPaymentAmount) && !isNaN(downPaymentPercent)) {
       dispatch(updateDownPaymentPercent(downPaymentPercent));
       // dispatch(updateDownPaymentAmount(downPaymentAmount));
-    } else {
-      return null;
     }
   };
 
@@ -66,7 +63,7 @@ const MortgagePayCalc = () => {
                   aria-label='Asking Price'
                   aria-describedby='basic-addon1'
                   id='askingPrice'
-                  value={askingPrice}
+                  value={askingPrice || ''}
                   onChange={handleAskingPriceChange}
                 />
               </div>
@@ -84,7 +81,7 @@ const MortgagePayCalc = () => {
                 className='form-control'
                 placeholder='Enter amount'
                 aria-label='down payment number'
-                value={downPaymentAmount}
+                value={downPaymentAmount || ''}
                 onChange={(e) => dispatch(updateDownPaymentAmount(Number(e.target.value)))}
               />
               <input
@@ -92,7 +89,7 @@ const MortgagePayCalc = () => {
                 className='form-control'
                 placeholder=' '
                 aria-label='down payment percentage'
-                value={downPaymentPercent}
+                value={downPaymentPercent || ''}
                 onChange={(e) => dispatch(updateDownPaymentPercent(Number(e.target.value)))}
               />
               <span className='input-group-text'>%</span>
