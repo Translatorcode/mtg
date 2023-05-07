@@ -10,14 +10,22 @@ import {
   updateMortgageRate,
   updateAmortizationPeriod,
   updatePaymentFrequency,
+  submit,
 } from '../redux/slices/mortgageCalc';
 
 const MortgagePayCalc = () => {
   const dispatch = useDispatch();
 
   const mortgage = useSelector((state) => state.mortgageCalc);
-  const { askingPrice, downPaymentAmount, downPaymentPercent, mortgageRate, amortizationPeriod, paymentFrequency } =
-    mortgage;
+  const {
+    askingPrice,
+    downPaymentAmount,
+    downPaymentPercent,
+    mortgageRate,
+    amortizationPeriod,
+    paymentFrequency,
+    totalMortgageAmount,
+  } = mortgage;
 
   const handleAskingPriceChange = (e) => {
     const newAskingPrice = Number(e.target.value);
@@ -104,7 +112,7 @@ const MortgagePayCalc = () => {
                     className='form-control'
                     placeholder='Enter amount'
                     aria-label='Mortgage rate'
-                    value={mortgageRate}
+                    value={mortgageRate || ''}
                     onChange={(e) => dispatch(updateMortgageRate(Number(e.target.value)))}
                   />
                   <span className='input-group-text'>%</span>
@@ -146,16 +154,22 @@ const MortgagePayCalc = () => {
                     <option value='23'>23 years</option>
                     <option value='24'>24 years</option>
                     <option value='25'>25 years</option>
+                    <option value='26'>26 years</option>
+                    <option value='27'>27 years</option>
+                    <option value='28'>28 years</option>
+                    <option value='29'>29 years</option>
+                    <option value='30'>30 years</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            <div className='row'>
+            {/* <div className='row'>
               <p className='text-custom-four fw-semibold'>Frequency</p>
-            </div>
+            </div> */}
             <div className='row'>
-              <div className='col-md-8'>
+              <div className='col-md-6'>
+                <p className='text-custom-four fw-semibold'>Frequency</p>
                 <div className='input-group mb-3 select-container'>
                   <select
                     className='form-select'
@@ -171,10 +185,42 @@ const MortgagePayCalc = () => {
                   </select>
                 </div>
               </div>
-              <div className='col-md-4'>
-                <button type='submit' className='btn btn-primary w-100' onClick={() => console.log('Click')}>
-                  Submit
-                </button>
+              <div className='col-md-6'>
+                <p className='text-custom-four fw-semibold'>Mortgage Term</p>
+                <div className='input-group mb-3 select-container'>
+                  <select
+                    className='form-select'
+                    id='inputGroupSelect01'
+                    value={paymentFrequency}
+                    onChange={(e) => dispatch(updatePaymentFrequency(Number(e.target.value)))}
+                  >
+                    <option value='1' defaultValue>
+                      1 Year
+                    </option>
+                    <option value='2'>2 Year</option>
+                    <option value='3'>3 Year</option>
+                    <option value='4'>4 Year</option>
+                    <option value='5'>5 Year</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div className='row m-0 pt-2 pb-3 '>
+              <button
+                type='submit'
+                className='btn btn-primary w-100 col-primary-custom'
+                onClick={() => dispatch(submit())}
+              >
+                Submit
+              </button>
+            </div>
+
+            <div class='row text-center'>
+              <div className='col'>
+                <p className='text-custom-five m-0'>Total mortgage amount</p>
+              </div>
+              <div className='col'>
+                <p className='fw-semibold m-0'>{totalMortgageAmount}</p>
               </div>
             </div>
             {/* <form onSubmit={(e) => e.preventDefault()}>
@@ -184,23 +230,42 @@ const MortgagePayCalc = () => {
             </button>
           </form> */}
           </div>
-          <div className='col-md-2'>
-            <div className='container  rounded pt-4 pb-4 text-center fw-semibold col-bg-light-blue h-100 d-flex align-items-center  justify-content-between flex-column'>
-              <div className='col '>
-                <p className=' mb-0 text-custom-five'>Mortgage Amount</p>
-                <hr className='mt-1 mb-1 ' />
-                <p>$376,900</p>
+          <div className='col-md-7'>
+            {/* <div className='container  rounded pt-4 pb-4 text-center fw-semibold col-bg-light-blue h-100 d-flex align-items-center  justify-content-between flex-column'> */}
+            <div className='container rounded pt-4 pb-4 col-bg-light-blue h-100 d-flex align-items-center flex-column '>
+              <h2 className='fw-bold fs-5 text-primary-custom'>Mortgage Term Summary</h2>
+              <p className='fw-light text-custom-five'>5 year fixed (closed)</p>
+              <div className='row w-100'>
+                <div className='col-md-5'>
+                  <table className='table table-borderless position-relative'>
+                    <tbody>
+                      <tr>
+                        <td>Principal Paid</td>
+                        <td className='fw-semibold'>$106,873</td>
+                      </tr>
+                      <tr>
+                        <td>Interest Paid</td>
+                        <td className='fw-semibold'>$93,600</td>
+                      </tr>
+                      <hr className='m-0 position-absolute w-100' />
+                      <tr>
+                        <td>Total Paid</td>
+                        <td className='fw-semibold'>$200,473</td>
+                      </tr>
+                      <hr className='m-0 position-absolute w-100' />
+                      <tr>
+                        <td>Remaining balance</td>
+                        <td className='fw-semibold'> $613,127</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div className='col-md-6'>
+                  {/* <div className='container w-80'>
+                    <PieChart chartData={userData} />
+                  </div> */}
+                </div>
               </div>
-              <div className='col'>
-                <p className='mb-0 text-custom-five'>Total Interest</p>
-                <hr className='mt-1 mb-1' />
-                <p>$106,900</p>
-              </div>
-            </div>
-          </div>
-          <div className='col-md-5'>
-            <div className='container'>
-              <PieChart chartData={userData} />
             </div>
           </div>
         </div>
