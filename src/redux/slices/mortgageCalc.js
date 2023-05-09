@@ -4,14 +4,16 @@ export const initialState = {
   askingPrice: 0,
   downPaymentAmount: 0,
   downPaymentPercent: 0,
-  mortgageRate: 0,
-  amortizationPeriod: 0,
-  paymentFrequency: 0,
+  mortgageRate: 5.59,
+  amortizationPeriod: 25,
+  paymentFrequency: 1,
+  mortgageTerm: 3,
   totalMortgageAmount: null,
   monthlyPayment: null,
   principalPaid: null,
   interestPaid: null,
-  payoffdate: null,
+  totalPaid: null,
+  remainingBalance: null,
 };
 
 export const mortgageSlice = createSlice({
@@ -53,26 +55,51 @@ export const mortgageSlice = createSlice({
     updatePaymentFrequency: (state, action) => {
       state.paymentFrequency = action.payload;
     },
+
+    updateMortgageTerm: (state, action) => {
+      state.mortgageTerm = action.payload;
+    },
     submit: (state, action) => {
       /////////////
       const askingPrice = parseFloat(state.askingPrice);
       const downPaymentAmount = parseFloat(state.downPaymentAmount);
-      if (!isNaN(askingPrice) && !isNaN(downPaymentAmount)) {
-        state.totalMortgageAmount = askingPrice - downPaymentAmount;
-      }
-      /////////////
+      const totalMortgageAmount =
+        isNaN(askingPrice) || isNaN(downPaymentAmount) ? NaN : askingPrice - downPaymentAmount;
+      state.totalMortgageAmount = totalMortgageAmount;
 
-      const actualRateValue = state.mortgageRate / 12 / 100;
-      const interestFactor = actualRateValue + 1;
+      /////////////
+      const monthlyInterestRate = state.mortgageRate / 100 / 12;
+      const interestFactor = monthlyInterestRate + 1;
       const amortizationMonths = state.amortizationPeriod * 12;
       const power = Math.pow(interestFactor, amortizationMonths);
 
-      const topForumla = actualRateValue * power;
-      const bottomFormula = power - 1;
+      const monthlyPayment = Number(
+        ((state.totalMortgageAmount * (monthlyInterestRate * power)) / (power - 1)).toFixed(4)
+      );
+      state.monthlyPayment = monthlyPayment;
 
-      const formulaDivide = topForumla / bottomFormula;
-      console.log(topForumla, bottomFormula, formulaDivide);
-      state.monthlyPayment = Number((state.totalMortgageAmount * formulaDivide).toFixed(4));
+      /////////////
+      const totalPayments = state.mortgageTerm * 12;
+      let balanceRemaining = state.totalMortgageAmount;
+
+      let principalPaid = 0;
+      let interestPaid = 0;
+
+      for (let i = 1; i <= totalPayments; i++) {
+        const monthlyInterest = balanceRemaining * monthlyInterestRate;
+        interestPaid += monthlyInterest;
+        const monthlyPrincipal = monthlyPayment - monthlyInterest;
+        balanceRemaining -= monthlyPrincipal;
+        principalPaid += monthlyPrincipal;
+        if (i % amortizationMonths === 0) {
+          balanceRemaining *= (1 + monthlyInterestRate) ** amortizationMonths;
+        }
+      }
+
+      state.principalPaid = Number(principalPaid.toFixed(2)).toLocaleString();
+      state.interestPaid = Number(interestPaid.toFixed(2)).toLocaleString();
+      state.totalPaid = Number((principalPaid + interestPaid).toFixed(2)).toLocaleString();
+      state.remainingBalance = Number((totalMortgageAmount - principalPaid).toFixed(2)).toLocaleString();
     },
   },
 });
@@ -81,6 +108,7 @@ export const {
   setLoading,
   setError,
   updateAskingPrice,
+  updateMortgageTerm,
   updateDownPaymentAmount,
   updateDownPaymentPercent,
   updateMortgageRate,

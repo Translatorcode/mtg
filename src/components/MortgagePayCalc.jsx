@@ -7,6 +7,7 @@ import {
   updateAskingPrice,
   updateDownPaymentAmount,
   updateDownPaymentPercent,
+  updateMortgageTerm,
   updateMortgageRate,
   updateAmortizationPeriod,
   updatePaymentFrequency,
@@ -22,9 +23,14 @@ const MortgagePayCalc = () => {
     downPaymentAmount,
     downPaymentPercent,
     mortgageRate,
+    mortgageTerm,
     amortizationPeriod,
     paymentFrequency,
     totalMortgageAmount,
+    principalPaid,
+    interestPaid,
+    totalPaid,
+    remainingBalance,
   } = mortgage;
 
   const handleAskingPriceChange = (e) => {
@@ -32,7 +38,6 @@ const MortgagePayCalc = () => {
     dispatch(updateAskingPrice(newAskingPrice));
     if (!isNaN(downPaymentAmount) && !isNaN(downPaymentPercent)) {
       dispatch(updateDownPaymentPercent(downPaymentPercent));
-      // dispatch(updateDownPaymentAmount(downPaymentAmount));
     }
   };
 
@@ -47,8 +52,24 @@ const MortgagePayCalc = () => {
     ],
   });
 
+  const [isAskingPriceInvalid, setIsAskingPriceInvalid] = useState(false);
+  const [isDownPaymentAmountInvalid, setIsDownPaymentAmountInvalid] = useState(false);
+
+  const handleSubmit = () => {
+    if (isNaN(askingPrice) || !askingPrice) {
+      setIsAskingPriceInvalid(true);
+      return;
+    }
+    if (isNaN(downPaymentAmount) || !downPaymentAmount) {
+      setIsDownPaymentAmountInvalid(true);
+      return;
+    }
+    setIsAskingPriceInvalid(false);
+    setIsDownPaymentAmountInvalid(false);
+  };
+
   return (
-    <form onSubmit={(e) => e.preventDefault()}>
+    <form onSubmit={(e) => e.preventDefault()} noValidate>
       <div className='container border rounded mt-5 mb-5'>
         <div className='row'>
           <div className='col-md-6 p-4'>
@@ -66,14 +87,17 @@ const MortgagePayCalc = () => {
                 </span>
                 <input
                   type='number'
-                  className='form-control'
+                  className={`form-control ${isAskingPriceInvalid ? 'is-invalid' : ''}`}
                   placeholder='Enter Amount'
                   aria-label='Asking Price'
                   aria-describedby='basic-addon1'
                   id='askingPrice'
                   value={askingPrice || ''}
                   onChange={handleAskingPriceChange}
+                  min='0'
+                  required
                 />
+                <div className='invalid-feedback'>Please enter a valid asking price.</div>
               </div>
             </div>
           </div>
@@ -86,12 +110,15 @@ const MortgagePayCalc = () => {
               <span className='input-group-text'>$</span>
               <input
                 type='number'
-                className='form-control'
+                className={`form-control ${isDownPaymentAmountInvalid ? 'is-invalid' : ''}`}
                 placeholder='Enter amount'
                 aria-label='down payment number'
                 value={downPaymentAmount || ''}
                 onChange={(e) => dispatch(updateDownPaymentAmount(Number(e.target.value)))}
+                min='0'
+                required
               />
+
               <input
                 type='number'
                 className='form-control'
@@ -99,8 +126,10 @@ const MortgagePayCalc = () => {
                 aria-label='down payment percentage'
                 value={downPaymentPercent || ''}
                 onChange={(e) => dispatch(updateDownPaymentPercent(Number(e.target.value)))}
+                required
               />
               <span className='input-group-text'>%</span>
+              <div className='invalid-feedback'>Please enter a valid down payment amount.</div>
             </div>
 
             <div className='row'>
@@ -114,8 +143,10 @@ const MortgagePayCalc = () => {
                     aria-label='Mortgage rate'
                     value={mortgageRate || ''}
                     onChange={(e) => dispatch(updateMortgageRate(Number(e.target.value)))}
+                    required
                   />
                   <span className='input-group-text'>%</span>
+                  <div className='invalid-feedback'>Please enter a valid mortgage rate.</div>
                 </div>
               </div>
               <div className='col-md-6'>
@@ -191,8 +222,8 @@ const MortgagePayCalc = () => {
                   <select
                     className='form-select'
                     id='inputGroupSelect01'
-                    value={paymentFrequency}
-                    onChange={(e) => dispatch(updatePaymentFrequency(Number(e.target.value)))}
+                    value={mortgageTerm}
+                    onChange={(e) => dispatch(updateMortgageTerm(Number(e.target.value)))}
                   >
                     <option value='1' defaultValue>
                       1 Year
@@ -209,13 +240,17 @@ const MortgagePayCalc = () => {
               <button
                 type='submit'
                 className='btn btn-primary w-100 col-primary-custom'
-                onClick={() => dispatch(submit())}
+                onClick={(e) => {
+                  e.preventDefault(); // prevent default form submission
+                  dispatch(submit());
+                  handleSubmit();
+                }}
               >
                 Submit
               </button>
             </div>
 
-            <div class='row text-center'>
+            <div className='row text-center'>
               <div className='col'>
                 <p className='text-custom-five m-0'>Total mortgage amount</p>
               </div>
@@ -234,28 +269,42 @@ const MortgagePayCalc = () => {
             {/* <div className='container  rounded pt-4 pb-4 text-center fw-semibold col-bg-light-blue h-100 d-flex align-items-center  justify-content-between flex-column'> */}
             <div className='container rounded pt-4 pb-4 col-bg-light-blue h-100 d-flex align-items-center flex-column '>
               <h2 className='fw-bold fs-5 text-primary-custom'>Mortgage Term Summary</h2>
-              <p className='fw-light text-custom-five'>5 year fixed (closed)</p>
+              <p className='fw-light text-custom-five'>{mortgageTerm} year fixed (closed)</p>
               <div className='row w-100'>
                 <div className='col-md-5'>
                   <table className='table table-borderless position-relative'>
                     <tbody>
                       <tr>
-                        <td>Principal Paid</td>
-                        <td className='fw-semibold'>$106,873</td>
+                        <td colSpan='2'>
+                          <hr className='my-0' />
+                        </td>
                       </tr>
                       <tr>
-                        <td>Interest Paid</td>
-                        <td className='fw-semibold'>$93,600</td>
+                        <td>+ Principal Paid</td>
+                        <td className='fw-semibold'>{principalPaid}</td>
                       </tr>
-                      <hr className='m-0 position-absolute w-100' />
                       <tr>
-                        <td>Total Paid</td>
-                        <td className='fw-semibold'>$200,473</td>
+                        <td>+ Interest Paid</td>
+                        <td className='fw-semibold'>{interestPaid}</td>
                       </tr>
-                      <hr className='m-0 position-absolute w-100' />
+                      <tr>
+                        <td>= Total Paid</td>
+                        <td className='fw-semibold'>{totalPaid}</td>
+                      </tr>
+                      <tr>
+                        <td colSpan='2'>
+                          <hr className='my-0' />
+                        </td>
+                      </tr>
+                      {/* <hr className='m-0 position-absolute w-100' /> */}
                       <tr>
                         <td>Remaining balance</td>
-                        <td className='fw-semibold'> $613,127</td>
+                        <td className='fw-semibold'>{remainingBalance}</td>
+                      </tr>
+                      <tr>
+                        <td colSpan='2'>
+                          <hr className='my-0' />
+                        </td>
                       </tr>
                     </tbody>
                   </table>
