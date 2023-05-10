@@ -96,10 +96,10 @@ export const mortgageSlice = createSlice({
         }
       }
 
-      state.principalPaid = Number(principalPaid.toFixed(2)).toLocaleString();
-      state.interestPaid = Number(interestPaid.toFixed(2)).toLocaleString();
-      state.totalPaid = Number((principalPaid + interestPaid).toFixed(2)).toLocaleString();
-      state.remainingBalance = Number((totalMortgageAmount - principalPaid).toFixed(2)).toLocaleString();
+      state.principalPaid = Number(principalPaid.toFixed().toLocaleString());
+      state.interestPaid = Number(interestPaid.toFixed().toLocaleString());
+      state.totalPaid = Number((principalPaid + interestPaid).toFixed().toLocaleString());
+      state.remainingBalance = Number((totalMortgageAmount - principalPaid).toFixed().toLocaleString());
     },
   },
 });

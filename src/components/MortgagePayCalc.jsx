@@ -1,4 +1,4 @@
-import { UserData } from '../Data';
+// import { UserData } from '../Data';
 import { useState } from 'react';
 import PieChart from './PieChart';
 import { useEffect } from 'react';
@@ -41,16 +41,16 @@ const MortgagePayCalc = () => {
     }
   };
 
-  const [userData, setUserData] = useState({
-    labels: UserData.map((data) => data.year),
-    datasets: [
-      {
-        labels: 'Users Gained',
-        data: UserData.map((data) => data.userGain),
-        backgroundColor: ['#585b96', '#91a321'],
-      },
-    ],
-  });
+  // const [userData, setUserData] = useState({
+  //   labels: UserData.map((data) => data.year),
+  //   datasets: [
+  //     {
+  //       labels: 'Users Gained',
+  //       data: UserData.map((data) => data.userGain),
+  //       backgroundColor: ['#585b96', '#91a321'],
+  //     },
+  //   ],
+  // });
 
   const [isAskingPriceInvalid, setIsAskingPriceInvalid] = useState(false);
   const [isDownPaymentAmountInvalid, setIsDownPaymentAmountInvalid] = useState(false);
@@ -265,14 +265,14 @@ const MortgagePayCalc = () => {
             </button>
           </form> */}
           </div>
-          <div className='col-md-7'>
+          <div className='col-md-7 '>
             {/* <div className='container  rounded pt-4 pb-4 text-center fw-semibold col-bg-light-blue h-100 d-flex align-items-center  justify-content-between flex-column'> */}
             <div className='container rounded pt-4 pb-4 col-bg-light-blue h-100 d-flex align-items-center flex-column '>
               <h2 className='fw-bold fs-5 text-primary-custom'>Mortgage Term Summary</h2>
               <p className='fw-light text-custom-five'>{mortgageTerm} year fixed (closed)</p>
               <div className='row w-100'>
-                <div className='col-md-5'>
-                  <table className='table table-borderless position-relative'>
+                <div className='col-md-5 d-flex flex-column justify-content-center'>
+                  <table className='table table-borderless position-relative '>
                     <tbody>
                       <tr>
                         <td colSpan='2'>
@@ -296,7 +296,6 @@ const MortgagePayCalc = () => {
                           <hr className='my-0' />
                         </td>
                       </tr>
-                      {/* <hr className='m-0 position-absolute w-100' /> */}
                       <tr>
                         <td>Remaining balance</td>
                         <td className='fw-semibold'>{remainingBalance}</td>
@@ -309,10 +308,10 @@ const MortgagePayCalc = () => {
                     </tbody>
                   </table>
                 </div>
-                <div className='col-md-6'>
-                  {/* <div className='container w-80'>
-                    <PieChart chartData={userData} />
-                  </div> */}
+                <div className='col-md-7 d-md-none d-lg-block d-sm-block'>
+                  <div className='container'>
+                    <PieChart />
+                  </div>
                 </div>
               </div>
             </div>
