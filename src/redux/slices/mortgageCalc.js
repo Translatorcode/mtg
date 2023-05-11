@@ -10,6 +10,8 @@ export const initialState = {
   mortgageTerm: 3,
   totalMortgageAmount: null,
   monthlyPayment: null,
+  biweeklyPayment: null,
+  weeklyPayment: null,
   principalPaid: null,
   interestPaid: null,
   totalPaid: null,
@@ -60,25 +62,33 @@ export const mortgageSlice = createSlice({
       state.mortgageTerm = action.payload;
     },
     submit: (state, action) => {
-      /////////////
+      /*Loan Amount */
       const askingPrice = parseFloat(state.askingPrice);
       const downPaymentAmount = parseFloat(state.downPaymentAmount);
       const totalMortgageAmount =
         isNaN(askingPrice) || isNaN(downPaymentAmount) ? NaN : askingPrice - downPaymentAmount;
       state.totalMortgageAmount = totalMortgageAmount;
 
-      /////////////
+      /* Payments*/
       const monthlyInterestRate = state.mortgageRate / 100 / 12;
       const interestFactor = monthlyInterestRate + 1;
       const amortizationMonths = state.amortizationPeriod * 12;
       const power = Math.pow(interestFactor, amortizationMonths);
 
       const monthlyPayment = Number(
-        ((state.totalMortgageAmount * (monthlyInterestRate * power)) / (power - 1)).toFixed(4)
+        ((state.totalMortgageAmount * (monthlyInterestRate * power)) / (power - 1)).toFixed()
       );
+
       state.monthlyPayment = monthlyPayment;
 
-      /////////////
+      if (state.paymentFrequency === 2) {
+        state.biweeklyPayment = Number((state.monthlyPayment * 12) / 26).toFixed();
+      }
+      if (state.paymentFrequency === 4) {
+        state.weeklyPayment = Number((state.monthlyPayment * 12) / 52).toFixed();
+      }
+
+      /*Principal Paid and Interest Paid after mortgage term  */
       const totalPayments = state.mortgageTerm * 12;
       let balanceRemaining = state.totalMortgageAmount;
 

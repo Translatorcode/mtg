@@ -1,10 +1,10 @@
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS } from 'chart.js/auto';
-import { UserData } from '../Data';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-
 import { mortgageCalc } from '../redux/slices/mortgageCalc';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js/auto';
+import { Doughnut } from 'react-chartjs-2';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = ({ chartData }) => {
   const { totalPaid, remainingBalance } = useSelector((state) => state.mortgageCalc);
@@ -25,14 +25,27 @@ const PieChart = ({ chartData }) => {
     labels: ['Interest/Principal', 'Remaining Balance'],
     datasets: [
       {
-        label: 'BreakDown',
+        label: 'Amount',
         data: [totalPaid, remainingBalance],
-        backgroundColor: ['#585b96', '#91a321'],
+        backgroundColor: ['rgba(	145, 163, 33, 0.8)', 'rgba(51, 	53, 	91, 0.8)'],
+        borderColor: 'white',
       },
     ],
+    borderWidth: 1,
   });
 
-  return <Doughnut data={mortgageData} />;
+  // const options = {
+  //   responsive: true,
+  //   maintainAspectRatio: true,
+  //   animation: {
+  //     animateScale: true,
+  //     animateRotate: true,
+  //   },
+  //   width: 400,
+  //   height: 400,
+  // };
+
+  return <Doughnut data={mortgageData} width={300} height={300} options={{ maintainAspectRatio: false }} />;
 };
 
 export default PieChart;

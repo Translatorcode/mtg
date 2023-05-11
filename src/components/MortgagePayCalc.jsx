@@ -1,8 +1,9 @@
-// import { UserData } from '../Data';
 import { useState } from 'react';
 import PieChart from './PieChart';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import TermSummary from './TermSummary';
+
 import {
   updateAskingPrice,
   updateDownPaymentAmount,
@@ -27,6 +28,9 @@ const MortgagePayCalc = () => {
     amortizationPeriod,
     paymentFrequency,
     totalMortgageAmount,
+    monthlyPayment,
+    biweeklyPayment,
+    weeklyPayment,
     principalPaid,
     interestPaid,
     totalPaid,
@@ -41,19 +45,9 @@ const MortgagePayCalc = () => {
     }
   };
 
-  // const [userData, setUserData] = useState({
-  //   labels: UserData.map((data) => data.year),
-  //   datasets: [
-  //     {
-  //       labels: 'Users Gained',
-  //       data: UserData.map((data) => data.userGain),
-  //       backgroundColor: ['#585b96', '#91a321'],
-  //     },
-  //   ],
-  // });
-
   const [isAskingPriceInvalid, setIsAskingPriceInvalid] = useState(false);
   const [isDownPaymentAmountInvalid, setIsDownPaymentAmountInvalid] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   const handleSubmit = () => {
     if (isNaN(askingPrice) || !askingPrice) {
@@ -66,22 +60,29 @@ const MortgagePayCalc = () => {
     }
     setIsAskingPriceInvalid(false);
     setIsDownPaymentAmountInvalid(false);
+    setClicked(true);
   };
+
+  // useEffect(() => {
+  //   if (paymentFrequency) {
+  //     dispatch(submit());
+  //   }
+  // }, [paymentFrequency, dispatch]);
 
   return (
     <form onSubmit={(e) => e.preventDefault()} noValidate>
       <div className='container border rounded mt-5 mb-5'>
-        <div className='row'>
+        <div className='row mb-0 pb-0'>
           <div className='col-md-6 p-4'>
             <h1 className='fw-bold fs-2 text-primary-custom'>Mortgage Payment Calculator</h1>
-            <p className='text-custom-five  '>
+            <p className='text-custom-five mb-0 '>
               Use our calculator to find a home that fits within your desired price range.
             </p>
           </div>
           <div className='col-md-6 p-4'>
             <p>Asking Price</p>
             <div>
-              <div className='input-group mb-3'>
+              <div className='input-group mb-0'>
                 <span className='input-group-text' id='basic-addon1'>
                   $
                 </span>
@@ -101,10 +102,10 @@ const MortgagePayCalc = () => {
               </div>
             </div>
           </div>
-          <hr />
+          <hr className='mb-0' />
         </div>
-        <div className='row pb-3 pt-3'>
-          <div className='col-md-5'>
+        <div className='row p-3 '>
+          <div className='col-md-6 d-flex flex-column justify-content-center'>
             <p className='text-custom-four fw-semibold'>Down Payment</p>
             <div className='input-group mb-3'>
               <span className='input-group-text'>$</span>
@@ -194,10 +195,6 @@ const MortgagePayCalc = () => {
                 </div>
               </div>
             </div>
-
-            {/* <div className='row'>
-              <p className='text-custom-four fw-semibold'>Frequency</p>
-            </div> */}
             <div className='row'>
               <div className='col-md-6'>
                 <p className='text-custom-four fw-semibold'>Frequency</p>
@@ -241,80 +238,35 @@ const MortgagePayCalc = () => {
                 type='submit'
                 className='btn btn-primary w-100 col-primary-custom'
                 onClick={(e) => {
-                  e.preventDefault(); // prevent default form submission
+                  e.preventDefault();
                   dispatch(submit());
                   handleSubmit();
                 }}
               >
-                Submit
+                {clicked ? 'Re-calculate' : 'Submit'}
               </button>
             </div>
-
-            <div className='row text-center'>
+            <div className='row text-center '>
               <div className='col'>
-                <p className='text-custom-five m-0'>Total mortgage amount</p>
+                <p className='text-custom-five m-0 text-start'>Total mortgage amount: </p>
+                <p className='fw-semibold m-0 text-start'>${totalMortgageAmount ?? '-'}</p>
               </div>
               <div className='col'>
-                <p className='fw-semibold m-0'>{totalMortgageAmount}</p>
+                <p className='text-custom-five m-0 text-start'>Monthly Payment: </p>
+                <p className='fw-semibold m-0 text-start'>
+                  {paymentFrequency === 1
+                    ? `$${monthlyPayment ?? '-'}`
+                    : paymentFrequency === 2
+                    ? `$${biweeklyPayment ?? '-'}`
+                    : paymentFrequency === 4
+                    ? `$${weeklyPayment ?? '-'}`
+                    : '-'}
+                </p>
               </div>
             </div>
-            {/* <form onSubmit={(e) => e.preventDefault()}>
-            <input type='text' />
-            <button type='submit' className='btn btn-primary' onClick={() => console.log('Click')}>
-              Submit
-            </button>
-          </form> */}
           </div>
-          <div className='col-md-7 '>
-            {/* <div className='container  rounded pt-4 pb-4 text-center fw-semibold col-bg-light-blue h-100 d-flex align-items-center  justify-content-between flex-column'> */}
-            <div className='container rounded pt-4 pb-4 col-bg-light-blue h-100 d-flex align-items-center flex-column '>
-              <h2 className='fw-bold fs-5 text-primary-custom'>Mortgage Term Summary</h2>
-              <p className='fw-light text-custom-five'>{mortgageTerm} year fixed (closed)</p>
-              <div className='row w-100'>
-                <div className='col-md-5 d-flex flex-column justify-content-center'>
-                  <table className='table table-borderless position-relative '>
-                    <tbody>
-                      <tr>
-                        <td colSpan='2'>
-                          <hr className='my-0' />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>+ Principal Paid</td>
-                        <td className='fw-semibold'>{principalPaid}</td>
-                      </tr>
-                      <tr>
-                        <td>+ Interest Paid</td>
-                        <td className='fw-semibold'>{interestPaid}</td>
-                      </tr>
-                      <tr>
-                        <td>= Total Paid</td>
-                        <td className='fw-semibold'>{totalPaid}</td>
-                      </tr>
-                      <tr>
-                        <td colSpan='2'>
-                          <hr className='my-0' />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Remaining balance</td>
-                        <td className='fw-semibold'>{remainingBalance}</td>
-                      </tr>
-                      <tr>
-                        <td colSpan='2'>
-                          <hr className='my-0' />
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className='col-md-7 d-md-none d-lg-block d-sm-block'>
-                  <div className='container'>
-                    <PieChart />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className='col-md-6  pt-0 pt-3 pt-lg-0 '>
+            <TermSummary />
           </div>
         </div>
       </div>
