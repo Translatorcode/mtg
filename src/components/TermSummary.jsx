@@ -22,7 +22,7 @@ const TermSummary = () => {
                 </td>
               </tr>
               <tr>
-                <td>+ Principal Paid</td>
+                <td>&nbsp;Principal Paid</td>
                 <td className='fw-semibold'>${principalPaid ?? '-'}</td>
               </tr>
               <tr>

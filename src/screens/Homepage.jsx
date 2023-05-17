@@ -1,6 +1,7 @@
 import React from 'react';
 import HeroImage from '../otherassets/HeroImage.png';
 import MortgagePayCalc from '../components/MortgagePayCalc';
+import Faq from '../components/Faq';
 
 // Bootstrap Note
 // In Bootstrap, when you define a class with a breakpoint-specific suffix (such as sm, md, lg, xl, or xxl), the styles defined in that class will only apply to the element when the screen width is equal to or greater than the breakpoint size.
@@ -31,6 +32,7 @@ const Homepage = () => {
         </div>
       </section>
       <MortgagePayCalc />
+      <Faq />
     </>
   );
 };

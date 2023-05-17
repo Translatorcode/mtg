@@ -31,43 +31,54 @@ const MortgagePayCalc = () => {
     monthlyPayment,
     biweeklyPayment,
     weeklyPayment,
-    principalPaid,
-    interestPaid,
-    totalPaid,
-    remainingBalance,
   } = mortgage;
-
-  const handleAskingPriceChange = (e) => {
-    const newAskingPrice = Number(e.target.value);
-    dispatch(updateAskingPrice(newAskingPrice));
-    if (!isNaN(downPaymentAmount) && !isNaN(downPaymentPercent)) {
-      dispatch(updateDownPaymentPercent(downPaymentPercent));
-    }
-  };
 
   const [isAskingPriceInvalid, setIsAskingPriceInvalid] = useState(false);
   const [isDownPaymentAmountInvalid, setIsDownPaymentAmountInvalid] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const [isMortgageRateInvaild, setIsMortgageRateInvaild] = useState(false);
 
-  const handleSubmit = () => {
-    if (isNaN(askingPrice) || !askingPrice) {
+  const handleAskingPriceChange = (e) => {
+    //get target value
+    const newAskingPrice = Number(e.target.value);
+    //set target value as the new asking price
+    dispatch(updateAskingPrice(newAskingPrice));
+    //if downPayment amount and percent are numberes
+    if (!isNaN(downPaymentAmount) && !isNaN(downPaymentPercent)) {
+      //changes the downPaymentAmount to reflect the downPaymentPercent
+      dispatch(updateDownPaymentPercent(downPaymentPercent));
+    }
+
+    // Trigger validation
+    if (isNaN(newAskingPrice) || !newAskingPrice || newAskingPrice <= 0) {
       setIsAskingPriceInvalid(true);
-      return;
+    } else {
+      setIsAskingPriceInvalid(false);
     }
-    if (isNaN(downPaymentAmount) || !downPaymentAmount) {
-      setIsDownPaymentAmountInvalid(true);
-      return;
-    }
-    setIsAskingPriceInvalid(false);
-    setIsDownPaymentAmountInvalid(false);
-    setClicked(true);
   };
 
-  // useEffect(() => {
-  //   if (paymentFrequency) {
-  //     dispatch(submit());
-  //   }
-  // }, [paymentFrequency, dispatch]);
+  useEffect(() => {
+    if (mortgageRate === 0) {
+      setIsMortgageRateInvaild(true);
+    } else {
+      setIsMortgageRateInvaild(false);
+    }
+
+    if (isNaN(downPaymentAmount) || downPaymentPercent <= 4.9) {
+      setIsDownPaymentAmountInvalid(true);
+    } else {
+      setIsDownPaymentAmountInvalid(false);
+    }
+    dispatch(submit());
+  }, [
+    askingPrice,
+    downPaymentAmount,
+    downPaymentPercent,
+    mortgageRate,
+    mortgageTerm,
+    amortizationPeriod,
+    paymentFrequency,
+    dispatch,
+  ]);
 
   return (
     <form onSubmit={(e) => e.preventDefault()} noValidate>
@@ -105,41 +116,42 @@ const MortgagePayCalc = () => {
           <hr className='mb-0' />
         </div>
         <div className='row p-3 '>
-          <div className='col-md-6 d-flex flex-column justify-content-center'>
-            <p className='text-custom-four fw-semibold'>Down Payment</p>
-            <div className='input-group mb-3'>
-              <span className='input-group-text'>$</span>
-              <input
-                type='number'
-                className={`form-control ${isDownPaymentAmountInvalid ? 'is-invalid' : ''}`}
-                placeholder='Enter amount'
-                aria-label='down payment number'
-                value={downPaymentAmount || ''}
-                onChange={(e) => dispatch(updateDownPaymentAmount(Number(e.target.value)))}
-                min='0'
-                required
-              />
+          <div className='col-md-6 d-flex flex-column justify-content-center justify-content-between'>
+            <div className='row mt-2'>
+              <p className='text-custom-four fw-semibold mb-1'>Down Payment</p>
+              <div className='input-group mb-3'>
+                <span className='input-group-text'>$</span>
+                <input
+                  type='number'
+                  className={`form-control ${isDownPaymentAmountInvalid ? 'is-invalid' : ''}`}
+                  placeholder='Enter amount'
+                  aria-label='down payment number'
+                  value={downPaymentAmount || ''}
+                  onChange={(e) => dispatch(updateDownPaymentAmount(Number(e.target.value)))}
+                  min='0'
+                  required
+                />
 
-              <input
-                type='number'
-                className='form-control'
-                placeholder=' '
-                aria-label='down payment percentage'
-                value={downPaymentPercent || ''}
-                onChange={(e) => dispatch(updateDownPaymentPercent(Number(e.target.value)))}
-                required
-              />
-              <span className='input-group-text'>%</span>
-              <div className='invalid-feedback'>Please enter a valid down payment amount.</div>
+                <input
+                  type='number'
+                  className='form-control'
+                  placeholder=' '
+                  aria-label='down payment percentage'
+                  value={downPaymentPercent || ''}
+                  onChange={(e) => dispatch(updateDownPaymentPercent(Number(e.target.value)))}
+                  required
+                />
+                <span className='input-group-text'>%</span>
+                <div className='invalid-feedback'>Your down payment must be at least 5% of your home price.</div>
+              </div>
             </div>
-
             <div className='row'>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold'>Mortgage rate</p>
+                <p className='text-custom-four fw-semibold mb-1'>Mortgage rate</p>
                 <div className='input-group mb-3'>
                   <input
                     type='number'
-                    className='form-control'
+                    className={`form-control ${isMortgageRateInvaild ? 'is-invalid' : ''}`}
                     placeholder='Enter amount'
                     aria-label='Mortgage rate'
                     value={mortgageRate || ''}
@@ -151,7 +163,7 @@ const MortgagePayCalc = () => {
                 </div>
               </div>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold'>Amortization period</p>
+                <p className='text-custom-four fw-semibold mb-1'>Amortization period</p>
                 <div className='input-group mb-3'>
                   <select
                     className='form-select'
@@ -159,12 +171,6 @@ const MortgagePayCalc = () => {
                     value={amortizationPeriod}
                     onChange={(e) => dispatch(updateAmortizationPeriod(Number(e.target.value)))}
                   >
-                    <option value='1' defaultValue>
-                      1 year
-                    </option>
-                    <option value='2'>2 years</option>
-                    <option value='3'>3 years</option>
-                    <option value='4'>4 years</option>
                     <option value='5'>5 years</option>
                     <option value='6'>6 years</option>
                     <option value='7'>7 years</option>
@@ -197,7 +203,7 @@ const MortgagePayCalc = () => {
             </div>
             <div className='row'>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold'>Frequency</p>
+                <p className='text-custom-four fw-semibold mb-1'>Frequency</p>
                 <div className='input-group mb-3 select-container'>
                   <select
                     className='form-select'
@@ -214,7 +220,7 @@ const MortgagePayCalc = () => {
                 </div>
               </div>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold'>Mortgage Term</p>
+                <p className='text-custom-four fw-semibold mb-1'>Mortgage Term</p>
                 <div className='input-group mb-3 select-container'>
                   <select
                     className='form-select'
@@ -233,26 +239,21 @@ const MortgagePayCalc = () => {
                 </div>
               </div>
             </div>
-            <div className='row m-0 pt-2 pb-3 '>
-              <button
-                type='submit'
-                className='btn btn-primary w-100 col-primary-custom'
-                onClick={(e) => {
-                  e.preventDefault();
-                  dispatch(submit());
-                  handleSubmit();
-                }}
-              >
-                {clicked ? 'Re-calculate' : 'Submit'}
-              </button>
-            </div>
-            <div className='row text-center '>
-              <div className='col'>
+            <div className='row text-center p-3 bg-light rounded'>
+              <div className='col '>
                 <p className='text-custom-five m-0 text-start'>Total mortgage amount: </p>
                 <p className='fw-semibold m-0 text-start'>${totalMortgageAmount ?? '-'}</p>
               </div>
               <div className='col'>
-                <p className='text-custom-five m-0 text-start'>Monthly Payment: </p>
+                <p className='text-custom-five m-0 text-start'>
+                  {paymentFrequency === 1
+                    ? 'Monthly Payment'
+                    : paymentFrequency === 2
+                    ? 'Bi-Weekly Payment'
+                    : paymentFrequency === 4
+                    ? 'Weekly Payment'
+                    : ''}
+                </p>
                 <p className='fw-semibold m-0 text-start'>
                   {paymentFrequency === 1
                     ? `$${monthlyPayment ?? '-'}`
