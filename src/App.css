@@ -1,3 +1,5 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
 :root {
   --primary-color: #33355b;
   --secondary-color: #91a321;
@@ -64,16 +66,12 @@
   box-shadow: none;
   border-color: transparent;
 }
-/*Accordion Border*/
+/*Tooltip Border*/
 
-.accordion-item:not(:last-child) {
-  border-bottom: 1px solid #dee2e6;
+.custom-tooltip {
+  --bs-tooltip-bg: var(--bs-primary);
 }
-
-.accordion-item:not(:first-child) {
-  border-top: 1px solid #dee2e6;
-}
-/*Accordion Border*/
+/*Tooltip Border*/
 
 body {
   font-family: 'Karla', sans-serif;

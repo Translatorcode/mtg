@@ -3,7 +3,14 @@ import PieChart from './PieChart';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TermSummary from './TermSummary';
+// import { createPopper } from '@popperjs/core';
+// import tippy from 'tippy.js';
+// import 'bootstrap';
+import Button from 'react-bootstrap/Button';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
+////////////////
 import {
   updateAskingPrice,
   updateDownPaymentAmount,
@@ -15,8 +22,31 @@ import {
   submit,
 } from '../redux/slices/mortgageCalc';
 
+const renderTooltip = (content) => <Tooltip id={`tooltip-${content}`}>{content}</Tooltip>;
+
+const TooltipIcon = ({ content, placement }) => {
+  return (
+    <OverlayTrigger placement={placement} overlay={renderTooltip(content)}>
+      <i
+        className='bi bi-question-circle-fill'
+        data-bs-toggle='tooltip'
+        data-bs-placement={placement}
+        title={content}
+      ></i>
+    </OverlayTrigger>
+  );
+};
+
 const MortgagePayCalc = () => {
   const dispatch = useDispatch();
+
+  // const renderTooltip = (props) => (
+  //   <Tooltip id='button-tooltip' {...props}>
+  //     The amount you’ll pay up front for your house.
+  //   </Tooltip>
+  // );
+
+  const renderTooltip = (content) => <Tooltip id={`tooltip-${content}`}>{content}</Tooltip>;
 
   const mortgage = useSelector((state) => state.mortgageCalc);
   const {
@@ -91,7 +121,10 @@ const MortgagePayCalc = () => {
             </p>
           </div>
           <div className='col-md-6 p-4'>
-            <p>Asking Price</p>
+            <p className='text-custom-four  fw-semibold mb-1'>
+              Asking Price &nbsp;
+              <TooltipIcon content='The list price of the home you’re interested in buying.' placement='right' />
+            </p>
             <div>
               <div className='input-group mb-0'>
                 <span className='input-group-text' id='basic-addon1'>
@@ -118,7 +151,14 @@ const MortgagePayCalc = () => {
         <div className='row p-3 '>
           <div className='col-md-6 d-flex flex-column justify-content-center justify-content-between'>
             <div className='row mt-2'>
-              <p className='text-custom-four fw-semibold mb-1'>Down Payment</p>
+              <p className='text-custom-four fw-semibold mb-1'>
+                Down Payment &nbsp;
+                <TooltipIcon
+                  content='The upfront payment made towards the purchase of your house. Your down payment will vary based on the price of the home.'
+                  placement='right'
+                />
+              </p>
+
               <div className='input-group mb-3'>
                 <span className='input-group-text'>$</span>
                 <input
@@ -147,7 +187,13 @@ const MortgagePayCalc = () => {
             </div>
             <div className='row'>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold mb-1'>Mortgage rate</p>
+                <p className='text-custom-four fw-semibold mb-1'>
+                  Mortgage rate &nbsp;
+                  <TooltipIcon
+                    content='The annual cost of borrowing money. It’s a percent of the total amount you borrow to buy a home for the entire amortization.'
+                    placement='right'
+                  />
+                </p>
                 <div className='input-group mb-3'>
                   <input
                     type='number'
@@ -163,7 +209,13 @@ const MortgagePayCalc = () => {
                 </div>
               </div>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold mb-1'>Amortization period</p>
+                <p className='text-custom-four fw-semibold mb-1'>
+                  Amortization period &nbsp;
+                  <TooltipIcon
+                    content='The duration of time it takes to fully repay the mortgage through regular payments. Typically, amortization periods last about 25 to 30 years.'
+                    placement='right'
+                  />
+                </p>
                 <div className='input-group mb-3'>
                   <select
                     className='form-select'
@@ -203,7 +255,13 @@ const MortgagePayCalc = () => {
             </div>
             <div className='row'>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold mb-1'>Frequency</p>
+                <p className='text-custom-four fw-semibold mb-1'>
+                  Payment Frequency &nbsp;
+                  <TooltipIcon
+                    content='How frequently will you&rsquo;ll be making your regular mortgage payments'
+                    placement='right'
+                  />
+                </p>
                 <div className='input-group mb-3 select-container'>
                   <select
                     className='form-select'
@@ -220,7 +278,13 @@ const MortgagePayCalc = () => {
                 </div>
               </div>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold mb-1'>Mortgage Term</p>
+                <p className='text-custom-four fw-semibold mb-1'>
+                  Mortgage Term &nbsp;
+                  <TooltipIcon
+                    content='The length of time you&rsquo;ll be committed to your current mortgage rate before you need to renew. '
+                    placement='right'
+                  />
+                </p>
                 <div className='input-group mb-3 select-container'>
                   <select
                     className='form-select'

@@ -143,6 +143,38 @@ const Faq = () => {
             </div>
           </div>
         </div>
+        <div class='border-bottom'>
+          <h2 class='accordion-header ' id='headingFive'>
+            <button
+              class='accordion-button collapsed'
+              type='button'
+              data-bs-toggle='collapse'
+              data-bs-target='#collapseFive'
+              aria-expanded='true'
+              aria-controls='collapseFive'
+            >
+              What is a mortgage amortization period?
+            </button>
+          </h2>
+          <div
+            id='collapseFive'
+            class='accordion-collapse collapse'
+            aria-labelledby='headingFive'
+            data-bs-parent='#accordionExample'
+          >
+            <div class='accordion-body'>
+              <p>
+                The mortgage amortization period refers to the length of time it takes to repay your mortgage loan in
+                full. It is the duration over which you make regular mortgage payments to gradually reduce your
+                outstanding balance. The length of the amortization period can vary and is typically expressed in years.
+                Common amortization periods are 15, 20, 25, or 30 years, although other options may be available.
+                Choosing a longer amortization period typically results in lower monthly payments, but you end up paying
+                more interest over the life of the mortgage. Conversely, opting for a shorter amortization period means
+                higher monthly payments but less interest paid overall.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
