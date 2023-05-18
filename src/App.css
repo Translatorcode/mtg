@@ -1,5 +1,6 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
+/* CUSTOM */
 :root {
   --primary-color: #33355b;
   --secondary-color: #91a321;
@@ -66,17 +67,31 @@
   box-shadow: none;
   border-color: transparent;
 }
-/*Tooltip Border*/
 
-.custom-tooltip {
-  --bs-tooltip-bg: var(--bs-primary);
-}
 /*Tooltip Border*/
+.tooltip > div.tooltip-inner {
+  background-color: white;
+  opacity: 1;
+  color: #2e2e2e;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 0;
+  text-align: left;
+  padding: 1em;
+}
+
+.tooltip.show {
+  opacity: 1;
+}
+
+.tooltip-arrow {
+  display: none !important;
+}
 
 body {
   font-family: 'Karla', sans-serif;
 }
 
+/* CUSTOM */
 .App {
   text-align: center;
 }

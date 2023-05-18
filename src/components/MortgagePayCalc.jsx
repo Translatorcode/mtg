@@ -22,31 +22,20 @@ import {
   submit,
 } from '../redux/slices/mortgageCalc';
 
+// ToolTip SetUp
 const renderTooltip = (content) => <Tooltip id={`tooltip-${content}`}>{content}</Tooltip>;
 
 const TooltipIcon = ({ content, placement }) => {
   return (
     <OverlayTrigger placement={placement} overlay={renderTooltip(content)}>
-      <i
-        className='bi bi-question-circle-fill'
-        data-bs-toggle='tooltip'
-        data-bs-placement={placement}
-        title={content}
-      ></i>
+      <i className='bi bi-question-circle-fill  ' data-bs-toggle='tooltip' overlay={renderTooltip(content)}></i>
     </OverlayTrigger>
   );
 };
 
+//Main Component
 const MortgagePayCalc = () => {
   const dispatch = useDispatch();
-
-  // const renderTooltip = (props) => (
-  //   <Tooltip id='button-tooltip' {...props}>
-  //     The amount you’ll pay up front for your house.
-  //   </Tooltip>
-  // );
-
-  const renderTooltip = (content) => <Tooltip id={`tooltip-${content}`}>{content}</Tooltip>;
 
   const mortgage = useSelector((state) => state.mortgageCalc);
   const {
@@ -123,7 +112,7 @@ const MortgagePayCalc = () => {
           <div className='col-md-6 p-4'>
             <p className='text-custom-four  fw-semibold mb-1'>
               Asking Price &nbsp;
-              <TooltipIcon content='The list price of the home you’re interested in buying.' placement='right' />
+              <TooltipIcon content='The list price of the home you&rsquo;re interested in buying.' placement='right' />
             </p>
             <div>
               <div className='input-group mb-0'>

@@ -1,6 +1,6 @@
 const Faq = () => {
   return (
-    <div className='container'>
+    <div className='container pb-5'>
       <p className='fw-bold fs-2'>Frequently asked questions</p>
       <div class='accordion' id='accordionExample'>
         <div class='border-top border-bottom'>
