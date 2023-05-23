@@ -1,8 +1,8 @@
 const Footer = () => {
   return (
-    <footer className='footer col-primary-custom p-4'>
+    <footer className='footer bg-dark p-4'>
       <div className='col-lg-12 '>
-        <div clclassNameass='row'>
+        <div className='row'>
           <h4 className='text-white'>Legal</h4>
           <p className='text-white'>
             Please note that the calculations provided by this mortgage calculator are approximate and intended for

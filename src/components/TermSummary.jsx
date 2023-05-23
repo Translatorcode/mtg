@@ -9,8 +9,8 @@ const TermSummary = () => {
   const { mortgageTerm, principalPaid, interestPaid, totalPaid, remainingBalance } = mortgage;
 
   return (
-    <div className='container  pt-4 pb-4  h-100 d-flex align-items-center flex-column col-bg-light-blue rounded'>
-      <h2 className='fw-bold fs-5 text-primary-custom'>Mortgage Term Summary</h2>
+    <div className='container  pt-4 pb-4  h-100 d-flex align-items-center flex-column shadow-sm'>
+      <h2 className='fw-bold fs-5 text-custom-two'>Mortgage Term Summary</h2>
       <p className='fw-light text-custom-five'>{remainingBalance ? `${mortgageTerm} year fixed (closed)` : null}</p>
       <div className='row w-100'>
         <div className='col-md-6 col-md-12 col-lg-6  d-flex flex-column justify-content-center'>
@@ -18,33 +18,33 @@ const TermSummary = () => {
             <tbody>
               <tr>
                 <td colSpan='2'>
-                  <hr className='my-0' />
+                  <hr className='my-0 custom-hr' />
                 </td>
               </tr>
               <tr>
-                <td>&nbsp;Principal Paid</td>
-                <td className='fw-semibold'>${principalPaid ?? '-'}</td>
+                <td className='fw-semibold'>&nbsp;Principal Paid</td>
+                <td className='fw-semibold text-custom-four'>${principalPaid ?? '-'}</td>
               </tr>
               <tr>
-                <td>+ Interest Paid</td>
-                <td className='fw-semibold'>${interestPaid ?? '-'}</td>
+                <td className='fw-semibold'>+ Interest Paid</td>
+                <td className='fw-semibold text-custom-four'>${interestPaid ?? '-'}</td>
               </tr>
               <tr>
-                <td>= Total Paid</td>
-                <td className='fw-semibold'>${totalPaid ?? '-'}</td>
+                <td className='fw-semibold'>= Total Paid</td>
+                <td className='fw-semibold text-custom-four'>${totalPaid ?? '-'}</td>
               </tr>
               <tr>
                 <td colSpan='2'>
-                  <hr className='my-0' />
+                  <hr className='my-0 custom-hr' />
                 </td>
               </tr>
               <tr>
-                <td>Remaining balance</td>
-                <td className='fw-semibold'>${remainingBalance ?? '-'}</td>
+                <td className='fw-semibold'>Remaining balance</td>
+                <td className='fw-semibold text-custom-four'>${remainingBalance ?? '-'}</td>
               </tr>
               <tr>
                 <td colSpan='2'>
-                  <hr className='my-0' />
+                  <hr className='my-0 custom-hr' />
                 </td>
               </tr>
             </tbody>

@@ -101,22 +101,22 @@ const MortgagePayCalc = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()} noValidate>
-      <div className='container border rounded mt-5 mb-5'>
+      <div className='container bg-white shadow-sm p-3 mb-5 bg-white mt-5 mb-5'>
         <div className='row mb-0 pb-0'>
           <div className='col-md-6 p-4'>
-            <h1 className='fw-bold fs-2 text-primary-custom'>Mortgage Payment Calculator</h1>
-            <p className='text-custom-five mb-0 '>
+            <h2 className='fw-bold fs-2 text-custom-four'>Mortgage Payment Calculator</h2>
+            <p className='text-custom-two mb-0 '>
               Use our calculator to find a home that fits within your desired price range.
             </p>
           </div>
           <div className='col-md-6 p-4'>
-            <p className='text-custom-four  fw-semibold mb-1'>
+            <p className='text-custom-one  fw-semibold mb-1'>
               Asking Price &nbsp;
               <TooltipIcon content='The list price of the home you&rsquo;re interested in buying.' placement='right' />
             </p>
             <div>
               <div className='input-group mb-0'>
-                <span className='input-group-text' id='basic-addon1'>
+                <span className='input-group-text rounded-0' id='basic-addon1'>
                   $
                 </span>
                 <input
@@ -140,7 +140,7 @@ const MortgagePayCalc = () => {
         <div className='row p-3 '>
           <div className='col-md-6 d-flex flex-column justify-content-center justify-content-between'>
             <div className='row mt-2'>
-              <p className='text-custom-four fw-semibold mb-1'>
+              <p className='text-custom-one fw-semibold mb-1'>
                 Down Payment &nbsp;
                 <TooltipIcon
                   content='The upfront payment made towards the purchase of your house. Your down payment will vary based on the price of the home.'
@@ -149,10 +149,10 @@ const MortgagePayCalc = () => {
               </p>
 
               <div className='input-group mb-3'>
-                <span className='input-group-text'>$</span>
+                <span className='input-group-text rounded-0'>$</span>
                 <input
                   type='number'
-                  className={`form-control ${isDownPaymentAmountInvalid ? 'is-invalid' : ''}`}
+                  className={`form-control ${isDownPaymentAmountInvalid ? 'is-invalid' : ''} `}
                   placeholder='Enter amount'
                   aria-label='down payment number'
                   value={downPaymentAmount || ''}
@@ -176,17 +176,18 @@ const MortgagePayCalc = () => {
             </div>
             <div className='row'>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold mb-1'>
+                <p className='text-custom-one fw-semibold mb-1'>
                   Mortgage rate &nbsp;
                   <TooltipIcon
                     content='The annual cost of borrowing money. It’s a percent of the total amount you borrow to buy a home for the entire amortization.'
                     placement='right'
                   />
                 </p>
-                <div className='input-group mb-3'>
+                <div className='input-group mb-3 '>
                   <input
                     type='number'
-                    className={`form-control ${isMortgageRateInvaild ? 'is-invalid' : ''}`}
+                    className={`form-control ${isMortgageRateInvaild ? 'is-invalid' : ''} rounded-0`}
+                    rounded-0
                     placeholder='Enter amount'
                     aria-label='Mortgage rate'
                     value={mortgageRate || ''}
@@ -198,7 +199,7 @@ const MortgagePayCalc = () => {
                 </div>
               </div>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold mb-1'>
+                <p className='text-custom-one fw-semibold mb-1'>
                   Amortization period &nbsp;
                   <TooltipIcon
                     content='The duration of time it takes to fully repay the mortgage through regular payments. Typically, amortization periods last about 25 to 30 years.'
@@ -207,7 +208,7 @@ const MortgagePayCalc = () => {
                 </p>
                 <div className='input-group mb-3'>
                   <select
-                    className='form-select'
+                    className='form-select rounded-0'
                     id='inputGroupSelect01'
                     value={amortizationPeriod}
                     onChange={(e) => dispatch(updateAmortizationPeriod(Number(e.target.value)))}
@@ -244,7 +245,7 @@ const MortgagePayCalc = () => {
             </div>
             <div className='row'>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold mb-1'>
+                <p className='text-custom-one fw-semibold mb-1'>
                   Payment Frequency &nbsp;
                   <TooltipIcon
                     content='How frequently will you&rsquo;ll be making your regular mortgage payments'
@@ -253,7 +254,7 @@ const MortgagePayCalc = () => {
                 </p>
                 <div className='input-group mb-3 select-container'>
                   <select
-                    className='form-select'
+                    className='form-select rounded-0'
                     id='inputGroupSelect01'
                     value={paymentFrequency}
                     onChange={(e) => dispatch(updatePaymentFrequency(Number(e.target.value)))}
@@ -267,7 +268,7 @@ const MortgagePayCalc = () => {
                 </div>
               </div>
               <div className='col-md-6'>
-                <p className='text-custom-four fw-semibold mb-1'>
+                <p className='text-custom-one fw-semibold mb-1'>
                   Mortgage Term &nbsp;
                   <TooltipIcon
                     content='The length of time you&rsquo;ll be committed to your current mortgage rate before you need to renew. '
@@ -276,7 +277,7 @@ const MortgagePayCalc = () => {
                 </p>
                 <div className='input-group mb-3 select-container'>
                   <select
-                    className='form-select'
+                    className='form-select rounded-0'
                     id='inputGroupSelect01'
                     value={mortgageTerm}
                     onChange={(e) => dispatch(updateMortgageTerm(Number(e.target.value)))}
@@ -292,12 +293,12 @@ const MortgagePayCalc = () => {
                 </div>
               </div>
             </div>
-            <div className='row text-center p-3 bg-light rounded'>
-              <div className='col '>
+            <div className='row-md-12 p-3 text-center bg-light  d-inline-block d-md-inline-flex '>
+              <div className='col-md-6'>
                 <p className='text-custom-five m-0 text-start'>Total mortgage amount: </p>
                 <p className='fw-semibold m-0 text-start'>${totalMortgageAmount ?? '-'}</p>
               </div>
-              <div className='col'>
+              <div className='col-md-6'>
                 <p className='text-custom-five m-0 text-start'>
                   {paymentFrequency === 1
                     ? 'Monthly Payment'
@@ -319,6 +320,7 @@ const MortgagePayCalc = () => {
               </div>
             </div>
           </div>
+
           <div className='col-md-6  pt-0 pt-3 pt-lg-0 '>
             <TermSummary />
           </div>

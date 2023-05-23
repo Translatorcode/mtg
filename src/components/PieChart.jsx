@@ -27,7 +27,7 @@ const PieChart = ({ chartData }) => {
       {
         label: 'Amount',
         data: [totalPaid, remainingBalance],
-        backgroundColor: ['rgba(	145, 163, 33, 0.8)', 'rgba(51, 	53, 	91, 0.8)'],
+        backgroundColor: ['#c5c5c5', '#0077b6'],
         borderColor: 'white',
       },
     ],
