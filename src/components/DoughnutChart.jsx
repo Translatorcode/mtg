@@ -34,18 +34,9 @@ const PieChart = ({ chartData }) => {
     borderWidth: 1,
   });
 
-  // const options = {
-  //   responsive: true,
-  //   maintainAspectRatio: true,
-  //   animation: {
-  //     animateScale: true,
-  //     animateRotate: true,
-  //   },
-  //   width: 400,
-  //   height: 400,
-  // };
-
-  return <Doughnut data={mortgageData} width={300} height={300} options={{ maintainAspectRatio: false }} />;
+  return (
+    <Doughnut data={mortgageData} width={300} height={300} options={{ maintainAspectRatio: false, responsive: true }} />
+  );
 };
 
 export default PieChart;

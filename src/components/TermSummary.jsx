@@ -1,4 +1,4 @@
-import PieChart from './PieChart';
+import PieChart from './DoughnutChart';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 

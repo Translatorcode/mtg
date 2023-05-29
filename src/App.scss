@@ -8,9 +8,8 @@ body {
 :root {
   --primary-color: #0077b6;
   --secondary-color: #9bd2f073;
+  --tertiary-color: #1e6991;
   --bg-light-grey: #f6f7fb;
-  --bg-light-blue: #f0f5ff;
-  --text-one: #373634;
   --text-two: #2e2e2e;
   --text-three: #474747;
   --text-five: #7d7a7a;
@@ -24,8 +23,8 @@ body {
   background-color: var(--secondary-color);
 }
 
-.col-bg-light-blue {
-  background-color: var(--bg-light-blue);
+.bg-tertiary-custom {
+  background-color: var(--tertiary-color);
 }
 
 .bg-light-grey {
@@ -36,8 +35,8 @@ body {
   color: var(--secondary-color);
 }
 
-.text-custom-one {
-  color: var(--text-one);
+.text-tertiary-custom {
+  color: var(--tertiary-color);
 }
 
 .text-custom-four {
@@ -77,8 +76,8 @@ body {
 
 .custom-hr {
   height: 3px; /* Adjust the height to make the line thicker */
-  background-color: var(--primary-color); /* Customize the line color if needed */
-  color: var(--primary-color);
+  background-color: var(--bg-third-custom); /* Customize the line color if needed */
+  color: var(--text-custom-five);
 }
 
 /* Accordion */

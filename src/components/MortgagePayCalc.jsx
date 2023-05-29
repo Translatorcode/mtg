@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PieChart from './PieChart';
+import PieChart from './DoughnutChart';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TermSummary from './TermSummary';
@@ -101,15 +101,15 @@ const MortgagePayCalc = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()} noValidate>
-      <div className='container bg-white shadow-sm p-3 mb-5 bg-white mt-5 mb-5'>
+      <div className='container bg-white shadow-sm p-3 mb-5 mt-5 '>
         <div className='row mb-0 pb-0'>
-          <div className='col-md-6 p-4'>
+          <div className='col-lg-6 p-4'>
             <h2 className='fw-bold fs-2 text-custom-four'>Mortgage Payment Calculator</h2>
             <p className='text-custom-two mb-0 '>
               Use our calculator to find a home that fits within your desired price range.
             </p>
           </div>
-          <div className='col-md-6 p-4'>
+          <div className='col-lg-6 p-4'>
             <p className='text-custom-one  fw-semibold mb-1'>
               Asking Price &nbsp;
               <TooltipIcon content='The list price of the home you&rsquo;re interested in buying.' placement='right' />
@@ -138,7 +138,7 @@ const MortgagePayCalc = () => {
           <hr className='mb-0' />
         </div>
         <div className='row p-3 '>
-          <div className='col-md-6 d-flex flex-column justify-content-center justify-content-between'>
+          <div className='col-lg-6 d-flex flex-column justify-content-center justify-content-between'>
             <div className='row mt-2'>
               <p className='text-custom-one fw-semibold mb-1'>
                 Down Payment &nbsp;
@@ -321,7 +321,7 @@ const MortgagePayCalc = () => {
             </div>
           </div>
 
-          <div className='col-md-6  pt-0 pt-3 pt-lg-0 '>
+          <div className='col-lg-6  pt-0 pt-3 pt-lg-0 '>
             <TermSummary />
           </div>
         </div>
