@@ -33,39 +33,41 @@ const AmortizationSchedule = () => {
             data-bs-parent='#accordionFlushExample'
           >
             <div className='accordion-body'>
-              <table className='table table-striped'>
-                <thead>
-                  <tr className='bg-tertiary-custom'>
-                    <th scope='col' className='text-custom-four text-white'>
-                      Year
-                    </th>
-                    <th scope='col' className='text-custom-four text-white'>
-                      Mortgage Payment
-                    </th>
-                    <th scope='col' className='text-custom-four text-white'>
-                      Principal paid
-                    </th>
-                    <th scope='col' className='text-custom-four text-white'>
-                      Interest paid
-                    </th>
-                    <th scope='col' className='text-custom-four text-white'>
-                      Balance
-                    </th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {amortizationChart.map((yearData, index) => (
-                    <tr key={yearData.year}>
-                      <td>{currentYear + index}</td>
-                      <td>{yearData.paymentAmount}</td>
-                      <td>{yearData.principal}</td>
-                      <td>{yearData.interest}</td>
-                      <td>{yearData.balanceRemaining < 0 ? 0 : yearData.balanceRemaining}</td>
+              <div class='table-responsive'>
+                <table className='table table-striped'>
+                  <thead>
+                    <tr className='bg-tertiary-custom'>
+                      <th scope='col' className='text-custom-four text-white'>
+                        Year
+                      </th>
+                      <th scope='col' className='text-custom-four text-white'>
+                        Mortgage Payment
+                      </th>
+                      <th scope='col' className='text-custom-four text-white'>
+                        Principal paid
+                      </th>
+                      <th scope='col' className='text-custom-four text-white'>
+                        Interest paid
+                      </th>
+                      <th scope='col' className='text-custom-four text-white'>
+                        Balance
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+
+                  <tbody>
+                    {amortizationChart.map((yearData, index) => (
+                      <tr key={yearData.year}>
+                        <td>{currentYear + index}</td>
+                        <td>{yearData.paymentAmount}</td>
+                        <td>{yearData.principal}</td>
+                        <td>{yearData.interest}</td>
+                        <td>{yearData.balanceRemaining < 0 ? 0 : yearData.balanceRemaining}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>

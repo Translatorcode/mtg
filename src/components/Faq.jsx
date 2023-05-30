@@ -1,7 +1,7 @@
 const Faq = () => {
   return (
     <>
-      <h2 className='fw-bold fs-2 text-center'>FAQ</h2>
+      <h2 className='fw-bold fs-2 text-center mb-5'>FAQ</h2>
       <div className='container mb-5 shadow-sm bg-white'>
         <div className='accordion' id='accordionExample'>
           <div className='border-bottom pt-2 pb-2 '>
@@ -145,7 +145,7 @@ const Faq = () => {
               </div>
             </div>
           </div>
-          <div className='pt-2 pb-2 bg-white'>
+          <div className=' border-bottom pt-2 pb-2 bg-white'>
             <h3 className='accordion-header ' id='headingFive'>
               <button
                 className='accordion-button collapsed fs-5 fw-semibold'
@@ -173,6 +173,54 @@ const Faq = () => {
                   available. Choosing a longer amortization period typically results in lower monthly payments, but you
                   end up paying more interest over the life of the mortgage. Conversely, opting for a shorter
                   amortization period means higher monthly payments but less interest paid overall.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className='pt-2 pb-2 bg-white'>
+            <h3 className='accordion-header ' id='headingSix'>
+              <button
+                className='accordion-button collapsed fs-5 fw-semibold'
+                type='button'
+                data-bs-toggle='collapse'
+                data-bs-target='#collapseSix'
+                aria-expanded='true'
+                aria-controls='collapseSix'
+              >
+                How can you pay off your mortgage faster?
+              </button>
+            </h3>
+            <div
+              id='collapseSix'
+              className='accordion-collapse collapse'
+              aria-labelledby='headingSix'
+              data-bs-parent='#accordionExample'
+            >
+              <div className='accordion-body'>
+                <p className='text-custom-six'>
+                  Paying off your mortgage faster can lead to significant savings in interest, potentially saving you
+                  thousands of dollars. However, it's important to note that methods for accelerating mortgage payments
+                  will require larger monthly payments, although for a shorter duration. Remember to review your
+                  mortgage agreement and consult with your lender to understand any prepayment penalties or specific
+                  terms related to paying off your mortgage faster. With that said, here are some strategies to expedite
+                  your mortgage payoff:
+                </p>
+                <p className='text-custom-six'>
+                  <strong className='text-custom-two'>Accelerate your payment schedule:</strong> &nbsp; Instead of
+                  making monthly payments, you can switch to a more frequent schedule, such as bi-weekly payments. This
+                  strategy helps you pay off your mortgage faster and reduces the overall interest paid.
+                </p>
+
+                <p className='text-custom-six'>
+                  <strong className='text-custom-two'>Make lump sum payments:</strong> &nbsp; If you come into a lump
+                  sum amount, such as a tax refund, inheritance, or work bonus, applying it towards your mortgage can
+                  reduce the outstanding balance and can shorten the loan term. Of course, this option depends on your
+                  financial capability.
+                </p>
+                <p className='text-custom-six'>
+                  <strong className='text-custom-two'>Increase your monthly mortgage payments:</strong> &nbsp; By
+                  allocating a higher amount towards your mortgage every month, you can effectively reduce the time it
+                  takes to fully pay off your mortgage.
                 </p>
               </div>
             </div>
