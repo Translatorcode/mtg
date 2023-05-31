@@ -16,6 +16,12 @@ body {
   --text-six: #cccccc;
 }
 
+// $enable-gradients: true;
+
+.custom-gradient-bg {
+  background: linear-gradient(200deg, rgba(129, 195, 231, 1) 0%, rgba(30, 105, 145, 1) 67%);
+}
+
 .bg-primary-custom {
   background-color: var(--primary-color);
 }
@@ -106,4 +112,9 @@ body {
 
 .tooltip-arrow {
   display: none !important;
+}
+
+// Icon Sizing
+.smaller-icon {
+  max-width: 100px; /* Adjust the desired width */
 }

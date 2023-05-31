@@ -1,12 +1,12 @@
 import React from 'react';
-import HeroImage from '../otherassets/HeroImage.png';
-import MortgageImage from '../otherassets/Mortgage-Hero-Image.jpg';
 import HeroImageTwo from '../otherassets/MortgageHeroTwo.png';
 import MortgagePayCalc from '../components/MortgagePayCalc';
-import Faq from '../components/Faq';
+
 import Footer from '../components/Footer';
 import AmortizationSchedule from '../components/AmortizationSchedule';
 import AmortizationGraph from '../components/AmortizationGraph';
+import About from '../components/About';
+import Faq from '../components/Faq';
 import { motion } from 'framer-motion';
 
 // Bootstrap Note
@@ -24,7 +24,7 @@ const Homepage = () => {
               <motion.div
                 initial={{ opacity: 0, x: -100 }} // Animation for the first child (text)
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.8 }}
               >
                 <div className='hero-content text-center text-md-start  mt-md-0 mt-5'>
                   <h1 className='display-3 lh-1 mb-3 text-custom-one '>
@@ -47,7 +47,7 @@ const Homepage = () => {
               <motion.div
                 initial={{ opacity: 0, y: 100 }} // Animation for the second child (image)
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.8 }}
               >
                 <div className='hero-image-content d-flex justify-content-center'>
                   <img src={HeroImageTwo} className='img-fluid' alt='house' />
@@ -60,7 +60,7 @@ const Homepage = () => {
       <MortgagePayCalc />
       <AmortizationGraph />
       <AmortizationSchedule />
-
+      <About />
       <Faq />
       <Footer />
     </>
