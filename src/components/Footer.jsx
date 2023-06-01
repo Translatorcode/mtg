@@ -1,10 +1,14 @@
+import { Link, animateScroll as scroll } from 'react-scroll';
+
+const currentYear = new Date().getFullYear();
+
 const Footer = () => {
   return (
-    <footer className='footer bg-dark p-4'>
+    <footer className='footer bg-dark-custom p-4'>
       <div className='container'>
         <div className='col-lg-12 '>
           <div className='row'>
-            <h4 className='text-white'>Disclaimer</h4>
+            <h4 className='text-white fw-bold'>Disclaimer</h4>
             <p className='text-white'>
               Please note that the calculations provided by this mortgage calculator are approximate and intended for
               informational purposes only. The actual payment amounts, including interest rates, terms, and fees, may
@@ -21,16 +25,53 @@ const Footer = () => {
               situation.
             </p>
           </div>
+
           <div className='row'>
-            <div className='col-lg-4 text-center '>
-              <a href='#'>About Us</a>
-            </div>
-            <div className='col-lg-4 text-center'>
-              <a href='#'>Frequently Asked Questions</a>
-            </div>
-            <div className='col-lg-4 text-center'>
-              <a href='#'>Mortgage Calculator</a>
-            </div>
+            <footer className='align-items-center justify-content-between row border-top pt-3'>
+              <div className='col-sm-auto'>
+                <small className='mb-2 text-white'>@ MortgagaLytics {currentYear}. All Right Reserved</small>
+              </div>
+              <div className='col-sm-auto'>
+                <div className='me-auto nav gap-3'>
+                  <Link
+                    activeClass='active'
+                    to='section2'
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                    duration={100}
+                    className='text-decoration-none'
+                    role='button'
+                  >
+                    About
+                  </Link>
+                  <Link
+                    activeClass='active'
+                    to='section3'
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                    duration={100}
+                    className='text-decoration-none'
+                    role='button'
+                  >
+                    Faq
+                  </Link>
+                  <Link
+                    activeClass='active'
+                    to='section1'
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                    duration={100}
+                    className='text-decoration-none'
+                    role='button'
+                  >
+                    Calculator
+                  </Link>
+                </div>
+              </div>
+            </footer>
           </div>
         </div>
       </div>

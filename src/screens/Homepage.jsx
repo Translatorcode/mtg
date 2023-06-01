@@ -7,7 +7,7 @@ import AmortizationGraph from '../components/AmortizationGraph';
 import About from '../components/About';
 import Faq from '../components/Faq';
 import { motion } from 'framer-motion';
-import { Link, animateScroll as scroll } from 'react-scroll';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 // Bootstrap Note
 // In Bootstrap, when you define a class with a breakpoint-specific suffix (such as sm, md, lg, xl, or xxl), the styles defined in that class will only apply to the element when the screen width is equal to or greater than the breakpoint size.
 

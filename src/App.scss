@@ -38,6 +38,10 @@ body {
   background-color: var(--bg-light-grey);
 }
 
+.bg-dark-custom {
+  background-color: var(--text-two);
+}
+
 .text-secondary-custom {
   color: var(--secondary-color);
 }
@@ -58,14 +62,20 @@ body {
   color: var(--text-two);
 }
 
-.nav-link:hover {
+//Nav-links
+a {
+  color: var(--text-five);
+}
+
+a:hover {
   color: var(--text-two);
 }
 
-.navbar-nav .nav-link:active,
-.navbar-nav .nav-link:focus {
-  box-shadow: none;
-  border-color: transparent;
+footer .active {
+  color: var(--text-five);
+}
+.active {
+  color: var(--text-two);
 }
 
 .navbar-toggle-custom {
@@ -88,7 +98,6 @@ body {
 }
 
 /* Accordion */
-
 .accordion-button:focus {
   box-shadow: none;
   border-color: none;
