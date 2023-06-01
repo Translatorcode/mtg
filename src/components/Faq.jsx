@@ -1,6 +1,6 @@
 const Faq = () => {
   return (
-    <>
+    <section className='pt-5' id='section3'>
       <h2 className='fw-bold fs-2 text-center mb-5'>FAQ</h2>
       <div className='container mb-5 shadow-sm bg-white'>
         <div className='accordion' id='accordionExample'>
@@ -227,7 +227,7 @@ const Faq = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

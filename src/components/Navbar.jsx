@@ -1,3 +1,5 @@
+import { Link, animateScroll as scroll } from 'react-scroll';
+
 const Navbar = () => {
   return (
     <>
@@ -20,22 +22,28 @@ const Navbar = () => {
           </button>
 
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-            <ul className='navbar-nav ms-auto mb-2 mb-lg-0 gap-5'>
-              <li className='nav-item'>
-                <a className='nav-link text-primary-custom fw-semibold' href='#'>
-                  About
-                </a>
-              </li>
-              <li className='nav-item'>
-                <a className='nav-link text-primary-custom fw-semibold' aria-current='page' href='#'>
-                  Faq
-                </a>
-              </li>
-              <li className='nav-item'>
-                <a className='nav-link text-primary-custom fw-semibold' href='#'>
-                  Calculator
-                </a>
-              </li>
+            <ul className='navbar-nav ms-auto my-2 mb-lg-0 gap-5'>
+              <Link activeClass='active' to='section2' spy={true} smooth={true} offset={-70} duration={500}>
+                <li className='nav-item'>
+                  <a className='nav-link text-primary-custom fw-semibold' href='#'>
+                    About
+                  </a>
+                </li>
+              </Link>
+              <Link activeClass='active' to='section3' spy={true} smooth={true} offset={-70} duration={500}>
+                <li className='nav-item'>
+                  <a className='nav-link text-primary-custom fw-semibold' aria-current='page' href='#'>
+                    Faq
+                  </a>
+                </li>
+              </Link>
+              <Link activeClass='active' to='section1' spy={true} smooth={true} offset={-70} duration={500}>
+                <li className='nav-item'>
+                  <a className='nav-link text-primary-custom fw-semibold' href='#'>
+                    Calculator
+                  </a>
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

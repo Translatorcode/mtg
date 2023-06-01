@@ -2,6 +2,7 @@
 
 body {
   font-family: 'Karla', sans-serif;
+  // background: url('../src/otherassets/paper-texture.jpg') repeat;
   background-color: #f6f7fb;
 }
 
@@ -117,4 +118,9 @@ body {
 // Icon Sizing
 .smaller-icon {
   max-width: 100px; /* Adjust the desired width */
+}
+
+//Opacity
+.custom-opacity {
+  opacity: 0.08;
 }

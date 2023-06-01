@@ -101,7 +101,7 @@ const MortgagePayCalc = () => {
   ]);
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} noValidate>
+    <form onSubmit={(e) => e.preventDefault()} noValidate id='section1'>
       <div className='container bg-white shadow-sm p-3 mb-5 mt-5 '>
         <div className='row mb-0 pb-0'>
           <div className='col-lg-6 p-4'>
