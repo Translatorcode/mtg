@@ -3,14 +3,21 @@ import { Link, animateScroll as scroll } from 'react-scroll';
 const Navbar = () => {
   return (
     <>
-      <nav className='navbar  sticky-top navbar-expand-lg bg-body-tertiary shadow-sm p-3 mb-5 bg-white '>
+      <nav className='navbar sticky-top navbar-expand-lg bg-body-tertiary shadow-sm p-3 mb-5 bg-white role="navigation"'>
         <div className='container-fluid'>
-          <a className='navbar-brand fw-bold text-custom-four' href='/'>
+          <Link
+            className='navbar-brand fw-bold text-custom-four'
+            to='top'
+            spy={true}
+            smooth={true}
+            offset={-80}
+            duration={100}
+            role='button'
+          >
             MortgageLytics
-          </a>
-
+          </Link>
           <button
-            className='navbar-toggler navbar-toggle-custom '
+            className='navbar-toggler navbar-toggle-custom motion-reduce'
             type='button'
             data-bs-toggle='collapse'
             data-bs-target='#navbarSupportedContent'
@@ -21,8 +28,8 @@ const Navbar = () => {
             <i className='navbar-toggler-icon navbar-icon-custom'></i>
           </button>
 
-          <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-            <ul className='navbar-nav ms-auto my-2 mb-lg-0 gap-5'>
+          <div className='collapse navbar-collapse motion-reduce' id='navbarSupportedContent'>
+            <ul className='navbar-nav ms-auto my-2 mb-lg-0 gap-5 mt-4 mt-sm-0'>
               <li className='nav-item fw-semibold '>
                 <Link
                   activeClass='active'
@@ -31,7 +38,7 @@ const Navbar = () => {
                   smooth={true}
                   offset={-80}
                   duration={100}
-                  className='text-decoration-none'
+                  className='text-decoration-none '
                   role='button'
                 >
                   About

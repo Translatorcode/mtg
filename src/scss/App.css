@@ -1,0 +1,117 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+body {
+  font-family: "Karla", sans-serif;
+  background-color: #f6f7fb;
+}
+
+.custom-gradient-bg {
+  background: linear-gradient(200deg, rgb(129, 195, 231) 0%, rgb(30, 105, 145) 67%);
+}
+
+.bg-primary-custom {
+  background-color: #0077b6;
+}
+
+.bg-light-grey {
+  background-color: #f6f7fb;
+}
+
+.bg-dark-custom {
+  background-color: #2e2e2e;
+}
+
+.text-custom-two {
+  color: #2e2e2e;
+}
+
+.text-custom-four {
+  color: #0077b6;
+}
+
+.text-custom-five {
+  color: #6e6c6c;
+}
+
+.text-custom-six {
+  color: #f6f7fb;
+}
+
+a {
+  color: #6e6c6c;
+}
+
+a:hover,
+a:active {
+  color: #0077b6;
+}
+
+.active {
+  color: #0077b6;
+}
+
+footer .active {
+  color: #f6f7fb;
+}
+
+.navbar-brand:hover,
+.navbar-brand:active {
+  color: #0077b6;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:not(.collapsed) {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.custom-hr {
+  height: 3px; /* Adjust the height to make the line thicker */
+  color: #6e6c6c;
+}
+
+.accordion-button:focus {
+  background-color: white;
+  color: #373634;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: white;
+  color: #2e2e2e;
+}
+
+.accordion-button:link,
+.accordion-button:visited,
+.accordion-button:hover,
+.accordion-button:active {
+  background-color: white;
+}
+
+/*Tooltip Border*/
+.tooltip > div.tooltip-inner {
+  background-color: white;
+  opacity: 1;
+  color: #2e2e2e;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 0;
+  text-align: left;
+  padding: 1em;
+}
+
+.tooltip.show {
+  opacity: 1;
+}
+
+.tooltip-arrow {
+  display: none !important;
+}
+
+.smaller-icon {
+  max-width: 100px; /* Adjust the desired width */
+}
+
+.custom-opacity {
+  opacity: 0.08;
+}

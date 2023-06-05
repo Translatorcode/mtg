@@ -36,6 +36,8 @@ const MortgagePayCalc = () => {
 
   const mortgage = useSelector((state) => state.mortgageCalc);
   const {
+    loading,
+    error,
     askingPrice,
     downPaymentAmount,
     downPaymentPercent,

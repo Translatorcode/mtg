@@ -1,32 +1,50 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
+body {
+  font-family: "Karla", sans-serif;
+  background-color: #f6f7fb;
+}
 
-/* CUSTOM */
 :root {
   --primary-color: #0077b6;
-  --secondary-color: #00507a;
+  --secondary-color: #9bd2f073;
+  --tertiary-color: #1e6991;
   --bg-light-grey: #f6f7fb;
-  --bg-light-blue: #f0f5ff;
-  --text-one: #373634;
   --text-two: #2e2e2e;
   --text-three: #474747;
   --text-five: #7d7a7a;
   --text-six: #cccccc;
 }
 
-.col-bg-light-blue {
-  background-color: var(--bg-light-blue);
+.custom-gradient-bg {
+  background: linear-gradient(200deg, rgb(129, 195, 231) 0%, rgb(30, 105, 145) 67%);
+}
+
+.bg-primary-custom {
+  background-color: var(--primary-color);
+}
+
+.bg-secondary-custom {
+  background-color: var(--secondary-color);
+}
+
+.bg-tertiary-custom {
+  background-color: var(--tertiary-color);
 }
 
 .bg-light-grey {
   background-color: var(--bg-light-grey);
 }
 
+.bg-dark-custom {
+  background-color: var(--text-two);
+}
+
 .text-secondary-custom {
   color: var(--secondary-color);
 }
 
-.text-custom-one {
-  color: var(--text-one);
+.text-tertiary-custom {
+  color: var(--tertiary-color);
 }
 
 .text-custom-four {
@@ -41,14 +59,20 @@
   color: var(--text-two);
 }
 
-.nav-link:hover {
+a {
+  color: var(--text-five);
+}
+
+a:hover {
   color: var(--text-two);
 }
 
-.navbar-nav .nav-link:active,
-.navbar-nav .nav-link:focus {
-  box-shadow: none;
-  border-color: transparent;
+footer .active {
+  color: var(--text-five);
+}
+
+.active {
+  color: var(--text-two);
 }
 
 .navbar-toggle-custom {
@@ -62,6 +86,32 @@
 .navbar-toggler:not(.collapsed) {
   box-shadow: none;
   border-color: transparent;
+}
+
+.custom-hr {
+  height: 3px; /* Adjust the height to make the line thicker */
+  background-color: var(--bg-third-custom); /* Customize the line color if needed */
+  color: var(--text-custom-five);
+}
+
+/* Accordion */
+.accordion-button:focus {
+  box-shadow: none;
+  border-color: none;
+  background-color: white;
+  color: var(--text-one);
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #ffffff !important;
+  color: var(--text-two) !important;
+}
+
+.accordion-button:link,
+.accordion-button:visited,
+.accordion-button:hover,
+.accordion-button:active {
+  background-color: #ffffff !important;
 }
 
 /*Tooltip Border*/
@@ -83,47 +133,10 @@
   display: none !important;
 }
 
-body {
-  font-family: 'Karla', sans-serif;
-  background-color: #f6f7fb;
+.smaller-icon {
+  max-width: 100px; /* Adjust the desired width */
 }
 
-/* CUSTOM */
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+.custom-opacity {
+  opacity: 0.08;
+}/*# sourceMappingURL=App.css.map */

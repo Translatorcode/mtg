@@ -35,7 +35,9 @@ const PieChart = ({ chartData }) => {
   });
 
   return (
-    <Doughnut data={mortgageData} width={300} height={300} options={{ maintainAspectRatio: false, responsive: true }} />
+    <div className='container mx-auto w-100' style={{ width: '300px', height: '300px' }}>
+      <Doughnut data={mortgageData} options={{ maintainAspectRatio: false, responsive: true }} />
+    </div>
   );
 };
 

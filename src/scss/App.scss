@@ -1,0 +1,133 @@
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import '../variables/variables.scss';
+
+body {
+  font-family: 'Karla', sans-serif;
+  background-color: $off-white-bg;
+}
+
+//BG
+
+.custom-gradient-bg {
+  background: $gradient-blue-bg;
+}
+
+.bg-primary-custom {
+  background-color: $blue-accent;
+}
+
+.bg-light-grey {
+  background-color: $light-grey-bg;
+}
+
+.bg-dark-custom {
+  background-color: $dark-accent;
+}
+
+//Font
+.text-custom-two {
+  color: $dark-accent;
+}
+
+.text-custom-four {
+  color: $blue-accent;
+}
+
+.text-custom-five {
+  color: $grey-accent;
+}
+
+.text-custom-six {
+  color: $off-white-bg;
+}
+
+//Nav-links
+a {
+  color: $grey-accent;
+}
+
+a:hover,
+a:active {
+  color: $blue-accent;
+}
+
+.active {
+  color: $blue-accent;
+}
+
+footer .active {
+  color: $off-white-bg;
+}
+
+.navbar-brand:hover,
+.navbar-brand:active {
+  color: $blue-accent;
+}
+
+// .navbar-toggle-custom {
+//   color: white;
+// }
+
+// .navbar a:focus {
+//   outline: 2px solid blue;
+// }
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:not(.collapsed) {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.custom-hr {
+  height: 3px; /* Adjust the height to make the line thicker */
+  color: $grey-accent;
+}
+
+.accordion-button:focus {
+  background-color: white;
+  color: $dark-grey-accent;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: $accordion-button-active-bg;
+  color: $dark-accent;
+}
+
+.accordion-button:link,
+.accordion-button:visited,
+.accordion-button:hover,
+.accordion-button:active {
+  background-color: $accordion-button-active-bg;
+}
+
+/*Tooltip Border*/
+.tooltip > div.tooltip-inner {
+  background-color: white;
+  opacity: 1;
+  color: $dark-accent;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 0;
+  text-align: left;
+  padding: 1em;
+}
+
+.tooltip.show {
+  opacity: 1;
+}
+
+.tooltip-arrow {
+  display: none !important;
+}
+
+// Icon Sizing
+.smaller-icon {
+  max-width: 100px; /* Adjust the desired width */
+}
+
+//Opacity
+.custom-opacity {
+  opacity: 0.08;
+}

@@ -52,9 +52,7 @@ const TermSummary = () => {
         </div>
         <div className='col-md-6 d-md-none d-lg-block d-sm-block'>
           {remainingBalance !== null ? (
-            <div className='container w-100'>
-              <PieChart />
-            </div>
+            <PieChart />
           ) : (
             <div className='bg-white p-4 rounded'>
               <h3 className='fs-5 fw-bold text-custom-four'>Important</h3>

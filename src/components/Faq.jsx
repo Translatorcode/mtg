@@ -7,7 +7,7 @@ const Faq = () => {
           <div className='border-bottom pt-2 pb-2 '>
             <h3 className='accordion-header' id='headingOne'>
               <button
-                className='accordion-button collapsed fs-5 fw-semibold'
+                className='accordion-button collapsed fs-5 fw-semibold '
                 type='button'
                 data-bs-toggle='collapse'
                 data-bs-target='#collapseOne'
@@ -197,7 +197,7 @@ const Faq = () => {
               data-bs-parent='#accordionExample'
             >
               <div className='accordion-body'>
-                <p className='text-custom-six'>
+                <p className='text-custom-five'>
                   Paying off your mortgage faster can lead to significant savings in interest, potentially saving you
                   thousands of dollars. However, it's important to note that methods for accelerating mortgage payments
                   will require larger monthly payments, although for a shorter duration. Remember to review your
@@ -205,19 +205,19 @@ const Faq = () => {
                   terms related to paying off your mortgage faster. With that said, here are some strategies to expedite
                   your mortgage payoff:
                 </p>
-                <p className='text-custom-six'>
+                <p className='text-custom-five'>
                   <strong className='text-custom-two'>Accelerate your payment schedule:</strong> &nbsp; Instead of
                   making monthly payments, you can switch to a more frequent schedule, such as bi-weekly payments. This
                   strategy helps you pay off your mortgage faster and reduces the overall interest paid.
                 </p>
 
-                <p className='text-custom-six'>
+                <p className='text-custom-five'>
                   <strong className='text-custom-two'>Make lump sum payments:</strong> &nbsp; If you come into a lump
                   sum amount, such as a tax refund, inheritance, or work bonus, applying it towards your mortgage can
                   reduce the outstanding balance and can shorten the loan term. Of course, this option depends on your
                   financial capability.
                 </p>
-                <p className='text-custom-six'>
+                <p className='text-custom-five'>
                   <strong className='text-custom-two'>Increase your monthly mortgage payments:</strong> &nbsp; By
                   allocating a higher amount towards your mortgage every month, you can effectively reduce the time it
                   takes to fully pay off your mortgage.
