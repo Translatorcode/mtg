@@ -4,7 +4,7 @@ const currentYear = new Date().getFullYear();
 
 const Footer = () => {
   return (
-    <footer className='footer bg-dark-custom p-4'>
+    <footer className='footer bg-dark-custom p-4 mt-5'>
       <div className='container'>
         <div className='col-lg-12 '>
           <div className='row'>
@@ -39,7 +39,7 @@ const Footer = () => {
                     spy={true}
                     smooth={true}
                     offset={-80}
-                    duration={100}
+                    duration={300}
                     className='text-decoration-none text-custom-six'
                     role='button'
                   >
@@ -51,7 +51,7 @@ const Footer = () => {
                     spy={true}
                     smooth={true}
                     offset={-80}
-                    duration={100}
+                    duration={300}
                     className='text-decoration-none text-custom-six'
                     role='button'
                   >
@@ -63,7 +63,7 @@ const Footer = () => {
                     spy={true}
                     smooth={true}
                     offset={-80}
-                    duration={100}
+                    duration={300}
                     className='text-decoration-none text-custom-six'
                     role='button'
                   >

@@ -11,7 +11,7 @@ const Navbar = () => {
             spy={true}
             smooth={true}
             offset={-80}
-            duration={100}
+            duration={300}
             role='button'
           >
             MortgageLytics
@@ -29,7 +29,7 @@ const Navbar = () => {
           </button>
 
           <div className='collapse navbar-collapse motion-reduce' id='navbarSupportedContent'>
-            <ul className='navbar-nav ms-auto my-2 mb-lg-0 gap-5 mt-4 mt-sm-0'>
+            <ul className='navbar-nav ms-auto my-2 mb-lg-0 gap-5 mt-4 mt-lg-0'>
               <li className='nav-item fw-semibold '>
                 <Link
                   activeClass='active'
@@ -37,7 +37,7 @@ const Navbar = () => {
                   spy={true}
                   smooth={true}
                   offset={-80}
-                  duration={100}
+                  duration={300}
                   className='text-decoration-none '
                   role='button'
                 >
@@ -52,7 +52,7 @@ const Navbar = () => {
                   spy={true}
                   smooth={true}
                   offset={-70}
-                  duration={100}
+                  duration={300}
                   className='text-decoration-none'
                   role='button'
                 >
@@ -67,7 +67,7 @@ const Navbar = () => {
                   spy={true}
                   smooth={true}
                   offset={-70}
-                  duration={100}
+                  duration={300}
                   className='text-decoration-none'
                   role='button'
                 >

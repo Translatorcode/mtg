@@ -7,7 +7,6 @@ body {
 }
 
 //BG
-
 .custom-gradient-bg {
   background: $gradient-blue-bg;
 }
@@ -16,15 +15,15 @@ body {
   background-color: $blue-accent;
 }
 
-.bg-light-grey {
-  background-color: $light-grey-bg;
-}
-
 .bg-dark-custom {
   background-color: $dark-accent;
 }
 
-//Font
+//Font Color
+.text-custom-one {
+  color: $dark-grey-accent;
+}
+
 .text-custom-two {
   color: $dark-accent;
 }
@@ -46,16 +45,18 @@ a {
   color: $grey-accent;
 }
 
-a:hover,
-a:active {
+.navbar a:hover,
+.navbar a:active {
   color: $blue-accent;
 }
 
-.active {
+.navbar .active {
   color: $blue-accent;
 }
 
-footer .active {
+footer a:active,
+footer a:hover,
+footer a:focus {
   color: $off-white-bg;
 }
 
@@ -64,9 +65,10 @@ footer .active {
   color: $blue-accent;
 }
 
-// .navbar-toggle-custom {
-//   color: white;
-// }
+.navbar-toggle-custom {
+  color: white;
+  box-shadow: none;
+}
 
 // .navbar a:focus {
 //   outline: 2px solid blue;
@@ -130,4 +132,9 @@ footer .active {
 //Opacity
 .custom-opacity {
   opacity: 0.08;
+}
+
+//Custom Sizing
+.custom-container {
+  height: 400px;
 }

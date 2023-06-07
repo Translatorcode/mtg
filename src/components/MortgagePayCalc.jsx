@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PieChart from './DoughnutChart';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TermSummary from './TermSummary';
@@ -7,7 +6,6 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import { motion } from 'framer-motion';
 
-////////////////
 import {
   updateAskingPrice,
   updateDownPaymentAmount,
@@ -36,8 +34,6 @@ const MortgagePayCalc = () => {
 
   const mortgage = useSelector((state) => state.mortgageCalc);
   const {
-    loading,
-    error,
     askingPrice,
     downPaymentAmount,
     downPaymentPercent,
@@ -54,6 +50,15 @@ const MortgagePayCalc = () => {
   const [isAskingPriceInvalid, setIsAskingPriceInvalid] = useState(false);
   const [isDownPaymentAmountInvalid, setIsDownPaymentAmountInvalid] = useState(false);
   const [isMortgageRateInvaild, setIsMortgageRateInvaild] = useState(false);
+
+  //reformat state
+  const formatNumberWithCommas = (number) => {
+    if (number !== null && number !== undefined) {
+      return number.toLocaleString();
+    } else {
+      return '-';
+    }
+  };
 
   const handleAskingPriceChange = (e) => {
     //get target value
@@ -109,22 +114,22 @@ const MortgagePayCalc = () => {
             </p>
           </div>
           <div className='col-lg-6 p-4'>
-            <p className='text-custom-one  fw-semibold mb-1'>
+            <label htmlFor='asking-price' className='text-custom-one fw-semibold mb-1'>
               Asking Price &nbsp;
               <TooltipIcon content='The list price of the home you&rsquo;re interested in buying.' placement='right' />
-            </p>
+            </label>
             <div>
               <div className='input-group mb-0'>
-                <span className='input-group-text rounded-0' id='basic-addon1'>
+                <span className='input-group-text rounded-0' id='asking-price-addon'>
                   $
                 </span>
                 <input
                   type='number'
                   className={`form-control ${isAskingPriceInvalid ? 'is-invalid' : ''}`}
                   placeholder='Enter Amount'
-                  aria-label='Asking Price'
-                  aria-describedby='basic-addon1'
-                  id='askingPrice'
+                  aria-label='Enter asking price'
+                  aria-describedby='asking-price-addon'
+                  id='asking-price'
                   value={askingPrice || ''}
                   onChange={handleAskingPriceChange}
                   min='0'
@@ -136,29 +141,29 @@ const MortgagePayCalc = () => {
           </div>
           <hr className='mb-0' />
         </div>
-        <motion.div
-          initial={{ opacity: 0, y: -100 }} // Animation for the first child (text)
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        <motion.div initial={{ opacity: 0, y: -100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
           <div className='row p-3 '>
-            <div className='col-lg-6 d-flex flex-column justify-content-center justify-content-between'>
+            <div className='col-lg-6 d-flex flex-column justify-content-between'>
               <div className='row mt-2'>
-                <p className='text-custom-one fw-semibold mb-1'>
+                <label htmlFor='down-payment' className='text-custom-one fw-semibold mb-1'>
                   Down Payment &nbsp;
                   <TooltipIcon
                     content='The upfront payment made towards the purchase of your house. Your down payment will vary based on the price of the home.'
                     placement='right'
                   />
-                </p>
+                </label>
 
                 <div className='input-group mb-3'>
-                  <span className='input-group-text rounded-0'>$</span>
+                  <span className={true ? 'input-group-text rounded-0' : ''} id='down-paymentamount-addon'>
+                    $
+                  </span>
                   <input
                     type='number'
                     className={`form-control ${isDownPaymentAmountInvalid ? 'is-invalid' : ''} `}
                     placeholder='Enter amount'
-                    aria-label='down payment number'
+                    aria-label='Enter down payment number'
+                    aria-describedby='down-paymentamount-addon'
+                    id='down-payment'
                     value={downPaymentAmount || ''}
                     onChange={(e) => dispatch(updateDownPaymentAmount(Number(e.target.value)))}
                     min='0'
@@ -169,51 +174,59 @@ const MortgagePayCalc = () => {
                     type='number'
                     className='form-control'
                     placeholder=' '
-                    aria-label='down payment percentage'
+                    aria-label='Enter down payment percentage'
+                    aria-describedby='down-paymentpercent-addon'
                     value={downPaymentPercent || ''}
                     onChange={(e) => dispatch(updateDownPaymentPercent(Number(e.target.value)))}
                     required
                   />
-                  <span className='input-group-text'>%</span>
+                  <span className='input-group-text' id='down-paymentpercent-addon'>
+                    %
+                  </span>
                   <div className='invalid-feedback'>Your down payment must be at least 5% of your home price.</div>
                 </div>
               </div>
               <div className='row'>
                 <div className='col-md-6'>
-                  <p className='text-custom-one fw-semibold mb-1'>
+                  <label htmlFor='mortgage-rate' className='text-custom-one fw-semibold mb-1'>
                     Mortgage rate &nbsp;
                     <TooltipIcon
-                      content='The annual cost of borrowing money. It’s a percent of the total amount you borrow to buy a home for the entire amortization.'
+                      content='The annual cost of borrowing money. It&rsquo;s a percent of the total amount you borrow to buy a home for the entire amortization.'
                       placement='right'
                     />
-                  </p>
+                  </label>
+
                   <div className='input-group mb-3 '>
                     <input
                       type='number'
                       className={`form-control ${isMortgageRateInvaild ? 'is-invalid' : ''} rounded-0`}
-                      rounded-0
                       placeholder='Enter amount'
-                      aria-label='Mortgage rate'
+                      aria-label='Enter mortgage rate'
+                      aria-describedby='mortgage-rate-addon'
                       value={mortgageRate || ''}
                       onChange={(e) => dispatch(updateMortgageRate(Number(e.target.value)))}
                       required
                     />
-                    <span className='input-group-text'>%</span>
+                    <span className='input-group-text' id='mortgage-rate-addon'>
+                      %
+                    </span>
                     <div className='invalid-feedback'>Please enter a valid mortgage rate.</div>
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  <p className='text-custom-one fw-semibold mb-1'>
+                  <label htmlFor='amortization-period' className='text-custom-one fw-semibold mb-1'>
                     Amortization period &nbsp;
                     <TooltipIcon
                       content='The duration of time it takes to fully repay the mortgage through regular payments. Typically, amortization periods last about 25 to 30 years.'
                       placement='right'
                     />
-                  </p>
+                  </label>
+
                   <div className='input-group mb-3'>
                     <select
                       className='form-select rounded-0'
-                      id='inputGroupSelect01'
+                      id='amortization-period'
+                      aria-label='Select amortization period'
                       value={amortizationPeriod}
                       onChange={(e) => dispatch(updateAmortizationPeriod(Number(e.target.value)))}
                     >
@@ -249,17 +262,19 @@ const MortgagePayCalc = () => {
               </div>
               <div className='row'>
                 <div className='col-md-6'>
-                  <p className='text-custom-one fw-semibold mb-1'>
+                  <label htmlFor='frequency-period' className='text-custom-one fw-semibold mb-1'>
                     Payment Frequency &nbsp;
                     <TooltipIcon
                       content='How frequently will you&rsquo;ll be making your regular mortgage payments'
                       placement='right'
                     />
-                  </p>
+                  </label>
+
                   <div className='input-group mb-3 select-container'>
                     <select
                       className='form-select rounded-0'
-                      id='inputGroupSelect01'
+                      id='frequency-period'
+                      aria-label='Select payment frequency period'
                       value={paymentFrequency}
                       onChange={(e) => dispatch(updatePaymentFrequency(Number(e.target.value)))}
                     >
@@ -272,17 +287,19 @@ const MortgagePayCalc = () => {
                   </div>
                 </div>
                 <div className='col-md-6'>
-                  <p className='text-custom-one fw-semibold mb-1'>
+                  <label htmlFor='mortgage-term' className='text-custom-one fw-semibold mb-1'>
                     Mortgage Term &nbsp;
                     <TooltipIcon
                       content='The length of time you&rsquo;ll be committed to your current mortgage rate before you need to renew. '
                       placement='right'
                     />
-                  </p>
+                  </label>
+
                   <div className='input-group mb-3 select-container'>
                     <select
                       className='form-select rounded-0'
-                      id='inputGroupSelect01'
+                      id='mortgage-term'
+                      aria-label='Select mortgage term'
                       value={mortgageTerm}
                       onChange={(e) => dispatch(updateMortgageTerm(Number(e.target.value)))}
                     >
@@ -297,13 +314,15 @@ const MortgagePayCalc = () => {
                   </div>
                 </div>
               </div>
-              <div className='row-md-12 p-3 text-center bg-light  d-inline-block d-md-inline-flex '>
-                <div className='col-md-6'>
-                  <p className='text-custom-five m-0 text-start'>Total mortgage amount: </p>
-                  <p className='fw-semibold m-0 text-start'>${totalMortgageAmount ?? '-'}</p>
+              <div className='row-md-12 p-3 text-center bg-light  d-inline-block d-md-inline-flex'>
+                <div className='col-md-6 mb-2 mb-md-0'>
+                  <p className='text-custom-five m-0  text-center text-md-start'>Total mortgage amount: </p>
+                  <p className='fw-semibold m-0 t mx-auto text-center text-md-start'>
+                    ${formatNumberWithCommas(totalMortgageAmount)}
+                  </p>
                 </div>
                 <div className='col-md-6'>
-                  <p className='text-custom-five m-0 text-start'>
+                  <p className='text-custom-five m-0 text-center text-md-start'>
                     {paymentFrequency === 1
                       ? 'Monthly Payment'
                       : paymentFrequency === 2
@@ -312,13 +331,13 @@ const MortgagePayCalc = () => {
                       ? 'Weekly Payment'
                       : ''}
                   </p>
-                  <p className='fw-semibold m-0 text-start'>
+                  <p className='fw-semibold m-0 text-center text-md-start' id='mortgage-amount '>
                     {paymentFrequency === 1
-                      ? `$${monthlyPayment ?? '-'}`
+                      ? `$${formatNumberWithCommas(monthlyPayment)}`
                       : paymentFrequency === 2
-                      ? `$${biweeklyPayment ?? '-'}`
+                      ? `$${formatNumberWithCommas(biweeklyPayment)}`
                       : paymentFrequency === 4
-                      ? `$${weeklyPayment ?? '-'}`
+                      ? `$${formatNumberWithCommas(weeklyPayment)}`
                       : '-'}
                   </p>
                 </div>

@@ -12,12 +12,12 @@ body {
   background-color: #0077b6;
 }
 
-.bg-light-grey {
-  background-color: #f6f7fb;
-}
-
 .bg-dark-custom {
   background-color: #2e2e2e;
+}
+
+.text-custom-one {
+  color: #373634;
 }
 
 .text-custom-two {
@@ -40,22 +40,29 @@ a {
   color: #6e6c6c;
 }
 
-a:hover,
-a:active {
+.navbar a:hover,
+.navbar a:active {
   color: #0077b6;
 }
 
-.active {
+.navbar .active {
   color: #0077b6;
 }
 
-footer .active {
+footer a:active,
+footer a:hover,
+footer a:focus {
   color: #f6f7fb;
 }
 
 .navbar-brand:hover,
 .navbar-brand:active {
   color: #0077b6;
+}
+
+.navbar-toggle-custom {
+  color: white;
+  box-shadow: none;
 }
 
 .navbar-toggler {
@@ -114,4 +121,8 @@ footer .active {
 
 .custom-opacity {
   opacity: 0.08;
+}
+
+.custom-container {
+  height: 400px;
 }

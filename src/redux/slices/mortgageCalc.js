@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const initialState = {
   loading: false,
-  error: null,
+  // error: null,
   askingPrice: 500000,
   downPaymentAmount: 100000,
   downPaymentPercent: 20,
@@ -28,10 +28,10 @@ export const mortgageSlice = createSlice({
     setLoading: (state) => {
       state.loading = true;
     },
-    setError: (state, { payload }) => {
-      state.error = payload;
-      state.loading = false;
-    },
+    // setError: (state, { payload }) => {
+    //   state.error = payload;
+    //   state.loading = false;
+    // },
     updateAskingPrice: (state, action) => {
       state.askingPrice = action.payload;
     },
@@ -66,7 +66,6 @@ export const mortgageSlice = createSlice({
 
     submit: (state, action) => {
       if (state.askingPrice <= 0 || state.downPaymentPercent <= 4.9 || state.mortgageRate === 0) {
-        // if either the asking price or down payment is not a number, return early
         return;
       }
 
@@ -113,11 +112,9 @@ export const mortgageSlice = createSlice({
 
       for (let i = 1; i <= totalPayments; i++) {
         const monthlyInterest = balanceRemaining * interestRatebasedonPayment;
-        // console.log(i, monthlyInterest);
-        // console.log(balanceRemaining);
+
         interestPaid += monthlyInterest;
 
-        ///
         const paymentAmount =
           state.paymentFrequency === 1
             ? monthlyPayment
@@ -143,7 +140,7 @@ export const mortgageSlice = createSlice({
       let remainingPayments = totalPaymentsAM;
 
       while (remainingPayments > 0) {
-        const paymentsPerYear = state.paymentFrequency === 1 ? 12 : state.paymentFrequency === 2 ? 26 : 56;
+        const paymentsPerYear = state.paymentFrequency === 1 ? 12 : state.paymentFrequency === 2 ? 26 : 52;
         const currentYearPayments = Math.min(remainingPayments, paymentsPerYear);
 
         let principalYear = 0;
@@ -171,22 +168,21 @@ export const mortgageSlice = createSlice({
 
         const payment = {
           year: amortizationChart.length + 1,
-          principal: principalYear.toFixed(),
-          interest: interestYear.toFixed(),
-          paymentAmount: paymentAmountYear.toFixed(),
-          balanceRemaining: balanceRemainingAM.toFixed(),
+          principal: Number(principalYear.toFixed()),
+          interest: Number(interestYear.toFixed()),
+          paymentAmount: Number(paymentAmountYear.toFixed()),
+          balanceRemaining: Number(balanceRemainingAM.toFixed()),
         };
         amortizationChart.push(payment);
 
         remainingPayments -= currentYearPayments;
       }
 
-      ////SCHEDULE
       state.amortizationChart = amortizationChart;
-      state.principalPaid = Number(principalPaid.toFixed().toLocaleString());
-      state.interestPaid = Number(interestPaid.toFixed().toLocaleString());
-      state.totalPaid = Number((principalPaid + interestPaid).toFixed().toLocaleString());
-      state.remainingBalance = Number((totalMortgageAmount - principalPaid).toFixed().toLocaleString());
+      state.principalPaid = Number(principalPaid.toFixed());
+      state.interestPaid = Number(interestPaid.toFixed());
+      state.totalPaid = Number((principalPaid + interestPaid).toFixed());
+      state.remainingBalance = Number((totalMortgageAmount - principalPaid).toFixed());
     },
   },
 });
