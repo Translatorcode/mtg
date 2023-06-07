@@ -5,7 +5,7 @@ import { Link, animateScroll as scroll } from 'react-scroll';
 
 const Hero = () => {
   return (
-    <section className='hero overflow-hidden' id='top'>
+    <header className='hero overflow-hidden' role='banner' id='top'>
       <div className='container mt-5 pt-4 pb-4'>
         <div className='row no-gutters align-items-center justify-content-between'>
           <div className='col-md-6 order-md-1 order-last'>
@@ -16,9 +16,9 @@ const Hero = () => {
                   <span className='fw-bold'>Made Simple</span>, Your Dreams&nbsp;
                   <span className='fw-bold'>Made Possible</span>
                 </h1>
-                <p className='hero-subheading fw-semibold mb-4'>
-                  Unlock your homeownership dreams with our user-friendly calculator. Calculate your monthly payment and
-                  access a summary of the mortgage term.
+                <p className='hero-subheading text-custom-one  mb-4'>
+                  Streamline your mortgage planning and make informed decisions with our hassle-free and user-friendly
+                  mortgage calculator app.
                 </p>
 
                 <Link
@@ -27,7 +27,7 @@ const Hero = () => {
                   spy={true}
                   smooth={true}
                   offset={-70}
-                  duration={100}
+                  duration={300}
                   className='text-decoration-none'
                   role='button'
                 >
@@ -41,13 +41,13 @@ const Hero = () => {
           <div className='col-md-6 d-lg-block order-md-2 order-first '>
             <motion.div initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
               <div className='hero-image-content d-flex justify-content-center'>
-                <img src={HeroImageTwo} className='img-fluid' alt='house' />
+                <img src={HeroImageTwo} className='img-fluid' alt='Money illustration' />
               </div>
             </motion.div>
           </div>
         </div>
       </div>
-    </section>
+    </header>
   );
 };
 

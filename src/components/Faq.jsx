@@ -4,7 +4,7 @@ const Faq = () => {
       <h2 className='fw-bold fs-2 text-center mb-5'>FAQ</h2>
       <div className='container mb-5 shadow-sm bg-white'>
         <div className='accordion' id='accordionExample'>
-          <div className='border-bottom pt-2 pb-2 '>
+          <div className='border-bottom py-2 '>
             <h3 className='accordion-header' id='headingOne'>
               <button
                 className='accordion-button collapsed fs-5 fw-semibold '
@@ -34,7 +34,7 @@ const Faq = () => {
               </div>
             </div>
           </div>
-          <div className='border-bottom pt-2 pb-2 bg-white'>
+          <div className='border-bottom py-2  bg-white'>
             <h3 className='accordion-header' id='headingTwo'>
               <button
                 className='accordion-button collapsed fs-5 fw-semibold'
@@ -62,7 +62,7 @@ const Faq = () => {
               </div>
             </div>
           </div>
-          <div className='border-bottom pt-2 pb-2 bg-white'>
+          <div className='border-bottom py-2 bg-white'>
             <h3 className='accordion-header' id='headingThree'>
               <button
                 className='accordion-button collapsed fs-5 fw-semibold'
@@ -83,9 +83,9 @@ const Faq = () => {
             >
               <div className='accordion-body text-custom-five'>
                 Calculating your mortgage payment is an important step in understanding the financial commitment
-                involved in homeownership. The{' '}
-                <strong className='text-custom-two'>MortgageLytics mortgage calculator</strong> can help you get an idea
-                of how much your mortgage payment could be by using some key variables:
+                involved in homeownership. The
+                <strong className='text-custom-two'> MortgageLytics mortgage calculator</strong> can help you get an
+                idea of how much your mortgage payment could be by using some key variables:
                 <p className='mt-3'>
                   <span className='text-decoration-underline text-custom-two'> Total principal amount: </span>&nbsp;
                   This is the purchase price minus your down payment
@@ -105,7 +105,7 @@ const Faq = () => {
               </div>
             </div>
           </div>
-          <div className='border-bottom pt-2 pb-2 bg-white'>
+          <div className='border-bottom py-2 bg-white'>
             <h3 className='accordion-header ' id='headingFour'>
               <button
                 className='accordion-button collapsed fs-5 fw-semibold'
@@ -145,7 +145,7 @@ const Faq = () => {
               </div>
             </div>
           </div>
-          <div className=' border-bottom pt-2 pb-2 bg-white'>
+          <div className=' border-bottom py-2 bg-white'>
             <h3 className='accordion-header ' id='headingFive'>
               <button
                 className='accordion-button collapsed fs-5 fw-semibold'
@@ -177,7 +177,7 @@ const Faq = () => {
               </div>
             </div>
           </div>
-          <div className='pt-2 pb-2 bg-white'>
+          <div className='py-2 bg-white'>
             <h3 className='accordion-header ' id='headingSix'>
               <button
                 className='accordion-button collapsed fs-5 fw-semibold'
