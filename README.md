@@ -1,5 +1,8 @@
 # MortgageLytics
 
+![ MortgageLytics Preview Calculator](./MortgageLyticsPreview2.png)
+
+
 **Technologies Used**
 - React
 - Bootstrap
