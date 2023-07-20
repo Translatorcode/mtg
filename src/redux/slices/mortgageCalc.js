@@ -42,7 +42,6 @@ export const mortgageSlice = createSlice({
         state.downPaymentPercent = Math.round((downPaymentAmount / state.askingPrice) * 10000) / 100;
       }
     },
-
     updateDownPaymentPercent: (state, action) => {
       const downPaymentPercent = action.payload;
       if (!isNaN(downPaymentPercent)) {
